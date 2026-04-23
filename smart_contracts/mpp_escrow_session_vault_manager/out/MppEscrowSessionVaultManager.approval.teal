@@ -1,0 +1,495 @@
+#pragma version 11
+#pragma typetrack false
+
+// @algorandfoundation/algorand-typescript/arc4/index.d.ts::Contract.approvalProgram() -> uint64:
+main:
+    intcblock 32 1 0 40 TMPL_USDC_ASSET_ID
+    bytecblock "s"
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:32
+    // export class MppEscrowSessionVaultManager extends Contract {
+    txn NumAppArgs
+    bz main___algots__.defaultCreate@14
+    txn OnCompletion
+    !
+    assert // OnCompletion must be NoOp
+    txn ApplicationID
+    assert
+    pushbytess 0x2feaf230 0xaa14c4f9 0x7e3f4a68 0x1f90fffd 0x9dbf6204 0x77252c2e 0x44e0b792 // method "openSession(address,address)void", method "fundMbrPool((address))void", method "optInUsdc()void", method "deposit(address,(address,uint64,uint64))void", method "claimVoucher(address,uint64,byte[])void", method "getRemainingBalance(address)uint64", method "refundAndCloseSession(address)void"
+    txna ApplicationArgs 0
+    match openSession fundMbrPool optInUsdc deposit claimVoucher getRemainingBalance refundAndCloseSession
+    err
+
+main___algots__.defaultCreate@14:
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:32
+    // export class MppEscrowSessionVaultManager extends Contract {
+    txn OnCompletion
+    !
+    txn ApplicationID
+    !
+    &&
+    assert // OnCompletion must be NoOp && can only call when creating
+    intc_1 // 1
+    return
+
+
+// smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts::MppEscrowSessionVaultManager.openSession[routing]() -> void:
+openSession:
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:41
+    // openSession(viewer: Account, host: Account): void {
+    txna ApplicationArgs 1
+    dup
+    len
+    intc_0 // 32
+    ==
+    assert // invalid number of bytes for arc4.static_array<arc4.uint8, 32>
+    txna ApplicationArgs 2
+    dup
+    cover 2
+    len
+    intc_0 // 32
+    ==
+    assert // invalid number of bytes for arc4.static_array<arc4.uint8, 32>
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:36
+    // sessions = BoxMap<Account, SessionInfo>({ keyPrefix: 's' })
+    bytec_0 // "s"
+    swap
+    concat
+    dup
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:44
+    // if (!viewerSession.exists) {
+    box_len
+    bury 1
+    bnz openSession_after_if_else@3
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:47
+    // totalDeposit: 0,
+    intc_2 // 0
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:45-49
+    // viewerSession.value = {
+    //   host,
+    //   totalDeposit: 0,
+    //   lastSettled: 0,
+    // }
+    itob
+    dig 2
+    dig 1
+    concat
+    swap
+    concat
+    dig 1
+    swap
+    box_put
+
+openSession_after_if_else@3:
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:41
+    // openSession(viewer: Account, host: Account): void {
+    intc_1 // 1
+    return
+
+
+// smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts::MppEscrowSessionVaultManager.fundMbrPool[routing]() -> void:
+fundMbrPool:
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:56
+    // fundMbrPool(payment: { receiver: Account }): void {
+    txna ApplicationArgs 1
+    dup
+    len
+    intc_0 // 32
+    ==
+    assert // invalid number of bytes for ObjectAACF8510
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:57
+    // assert(payment.receiver === op.Global.currentApplicationAddress, 'Payment must be to contract')
+    extract 0 32
+    global CurrentApplicationAddress
+    ==
+    assert // Payment must be to contract
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:56
+    // fundMbrPool(payment: { receiver: Account }): void {
+    intc_1 // 1
+    return
+
+
+// smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts::MppEscrowSessionVaultManager.optInUsdc[routing]() -> void:
+optInUsdc:
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:65
+    // assert(Txn.sender === op.Global.creatorAddress, 'Only creator can opt in USDC')
+    txn Sender
+    global CreatorAddress
+    ==
+    assert // Only creator can opt in USDC
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:67-71
+    // itxn.assetTransfer({
+    //   xferAsset: Asset(USDC_ASSET_ID),
+    //   assetReceiver: op.Global.currentApplicationAddress,
+    //   assetAmount: 0,
+    // }).submit()
+    itxn_begin
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:68
+    // xferAsset: Asset(USDC_ASSET_ID),
+    intc 4 // TMPL_USDC_ASSET_ID
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:69
+    // assetReceiver: op.Global.currentApplicationAddress,
+    global CurrentApplicationAddress
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:70
+    // assetAmount: 0,
+    intc_2 // 0
+    itxn_field AssetAmount
+    itxn_field AssetReceiver
+    itxn_field XferAsset
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:67-71
+    // itxn.assetTransfer({
+    //   xferAsset: Asset(USDC_ASSET_ID),
+    //   assetReceiver: op.Global.currentApplicationAddress,
+    //   assetAmount: 0,
+    // }).submit()
+    pushint 4 // 4
+    itxn_field TypeEnum
+    intc_2 // 0
+    itxn_field Fee
+    itxn_submit
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:64
+    // optInUsdc(): void {
+    intc_1 // 1
+    return
+
+
+// smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts::MppEscrowSessionVaultManager.deposit[routing]() -> void:
+deposit:
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:77
+    // deposit(viewer: Account, payment: { assetReceiver: Account; assetAmount: uint64; xferAsset: Asset }): void {
+    txna ApplicationArgs 1
+    dup
+    len
+    intc_0 // 32
+    ==
+    assert // invalid number of bytes for arc4.static_array<arc4.uint8, 32>
+    txna ApplicationArgs 2
+    dup
+    len
+    pushint 48 // 48
+    ==
+    assert // invalid number of bytes for ObjectC0D6902C
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:36
+    // sessions = BoxMap<Account, SessionInfo>({ keyPrefix: 's' })
+    bytec_0 // "s"
+    uncover 2
+    concat
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:80
+    // assert(viewerSession.exists, 'Session does not exist')
+    dup
+    box_len
+    bury 1
+    assert // Session does not exist
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:81
+    // assert(payment.assetReceiver === op.Global.currentApplicationAddress, 'Asset transfer must be to contract')
+    dig 1
+    extract 0 32
+    global CurrentApplicationAddress
+    ==
+    assert // Asset transfer must be to contract
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:82
+    // assert(payment.xferAsset === Asset(USDC_ASSET_ID), 'Only configured USDC accepted')
+    dig 1
+    intc_3 // 40
+    extract_uint64
+    intc 4 // TMPL_USDC_ASSET_ID
+    ==
+    assert // Only configured USDC accepted
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:84
+    // const currentData = clone(viewerSession.value)
+    dup
+    box_get
+    pop
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:85
+    // currentData.totalDeposit += payment.assetAmount
+    intc_0 // 32
+    extract_uint64
+    uncover 2
+    intc_0 // 32
+    extract_uint64
+    +
+    itob
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:84-86
+    // const currentData = clone(viewerSession.value)
+    // currentData.totalDeposit += payment.assetAmount
+    // viewerSession.value = clone(currentData)
+    intc_0 // 32
+    swap
+    box_replace
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:77
+    // deposit(viewer: Account, payment: { assetReceiver: Account; assetAmount: uint64; xferAsset: Asset }): void {
+    intc_1 // 1
+    return
+
+
+// smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts::MppEscrowSessionVaultManager.claimVoucher[routing]() -> void:
+claimVoucher:
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:92
+    // claimVoucher(viewer: Account, totalAmountClaimed: uint64, signature: bytes): void {
+    txna ApplicationArgs 1
+    dup
+    len
+    intc_0 // 32
+    ==
+    assert // invalid number of bytes for arc4.static_array<arc4.uint8, 32>
+    txna ApplicationArgs 2
+    dup
+    len
+    pushint 8 // 8
+    ==
+    assert // invalid number of bytes for arc4.uint64
+    dup
+    btoi
+    txna ApplicationArgs 3
+    dup
+    intc_2 // 0
+    extract_uint16 // on error: invalid array length header
+    pushint 2 // 2
+    +
+    dig 1
+    len
+    ==
+    assert // invalid number of bytes for arc4.dynamic_array<arc4.uint8>
+    extract 2 0
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:36
+    // sessions = BoxMap<Account, SessionInfo>({ keyPrefix: 's' })
+    bytec_0 // "s"
+    dig 4
+    concat
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:95
+    // assert(viewerSession.exists, 'Session does not exist')
+    dup
+    box_len
+    bury 1
+    assert // Session does not exist
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:97
+    // const data = clone(viewerSession.value)
+    dup
+    box_get
+    pop
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:99
+    // assert(Txn.sender === data.host, 'Only host can claim')
+    txn Sender
+    dig 1
+    extract 0 32
+    swap
+    dig 1
+    ==
+    assert // Only host can claim
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:100
+    // assert(totalAmountClaimed > data.lastSettled, 'Nothing new to claim')
+    dig 1
+    intc_3 // 40
+    extract_uint64
+    dig 5
+    dig 1
+    >
+    assert // Nothing new to claim
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:101
+    // assert(totalAmountClaimed <= data.totalDeposit, 'Claim exceeds deposit')
+    uncover 2
+    intc_0 // 32
+    extract_uint64
+    dig 5
+    >=
+    assert // Claim exceeds deposit
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:104
+    // const msg = op.itob(op.Global.currentApplicationId.id).concat(op.itob(totalAmountClaimed)).concat(Bytes('settle'))
+    global CurrentApplicationID
+    itob
+    dig 5
+    itob
+    concat
+    pushbytes "settle"
+    concat
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:105
+    // assert(op.ed25519verify(msg, signature, viewer.bytes), 'Invalid signature')
+    uncover 4
+    uncover 7
+    ed25519verify
+    assert // Invalid signature
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:107
+    // const payout: uint64 = totalAmountClaimed - data.lastSettled
+    uncover 3
+    swap
+    -
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:109-113
+    // itxn.assetTransfer({
+    //   xferAsset: Asset(USDC_ASSET_ID),
+    //   assetReceiver: data.host,
+    //   assetAmount: payout,
+    // }).submit()
+    itxn_begin
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:110
+    // xferAsset: Asset(USDC_ASSET_ID),
+    intc 4 // TMPL_USDC_ASSET_ID
+    itxn_field XferAsset
+    itxn_field AssetAmount
+    itxn_field AssetReceiver
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:109-113
+    // itxn.assetTransfer({
+    //   xferAsset: Asset(USDC_ASSET_ID),
+    //   assetReceiver: data.host,
+    //   assetAmount: payout,
+    // }).submit()
+    pushint 4 // 4
+    itxn_field TypeEnum
+    intc_2 // 0
+    itxn_field Fee
+    itxn_submit
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:115-116
+    // data.lastSettled = totalAmountClaimed
+    // viewerSession.value = clone(data)
+    intc_3 // 40
+    uncover 2
+    box_replace
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:92
+    // claimVoucher(viewer: Account, totalAmountClaimed: uint64, signature: bytes): void {
+    intc_1 // 1
+    return
+
+
+// smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts::MppEscrowSessionVaultManager.getRemainingBalance[routing]() -> void:
+getRemainingBalance:
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:122
+    // getRemainingBalance(viewer: Account): uint64 {
+    txna ApplicationArgs 1
+    dup
+    len
+    intc_0 // 32
+    ==
+    assert // invalid number of bytes for arc4.static_array<arc4.uint8, 32>
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:36
+    // sessions = BoxMap<Account, SessionInfo>({ keyPrefix: 's' })
+    bytec_0 // "s"
+    swap
+    concat
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:124
+    // assert(viewerSession.exists, 'Session does not exist')
+    dup
+    box_len
+    bury 1
+    assert // Session does not exist
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:126
+    // const data = clone(viewerSession.value)
+    box_get
+    pop
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:127
+    // return data.totalDeposit - data.lastSettled
+    dup
+    intc_0 // 32
+    extract_uint64
+    swap
+    intc_3 // 40
+    extract_uint64
+    -
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:122
+    // getRemainingBalance(viewer: Account): uint64 {
+    itob
+    pushbytes 0x151f7c75
+    swap
+    concat
+    log
+    intc_1 // 1
+    return
+
+
+// smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts::MppEscrowSessionVaultManager.refundAndCloseSession[routing]() -> void:
+refundAndCloseSession:
+    pushbytes ""
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:133
+    // refundAndCloseSession(viewer: Account): void {
+    txna ApplicationArgs 1
+    dupn 2
+    len
+    intc_0 // 32
+    ==
+    assert // invalid number of bytes for arc4.static_array<arc4.uint8, 32>
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:36
+    // sessions = BoxMap<Account, SessionInfo>({ keyPrefix: 's' })
+    bytec_0 // "s"
+    swap
+    concat
+    dupn 2
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:136
+    // assert(viewerSession.exists, 'Session does not exist')
+    box_len
+    bury 1
+    assert // Session does not exist
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:138
+    // const data = clone(viewerSession.value)
+    box_get
+    pop
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:141
+    // assert(Txn.sender === op.Global.creatorAddress || Txn.sender === data.host, 'Unauthorized')
+    txn Sender
+    global CreatorAddress
+    ==
+    bnz refundAndCloseSession_bool_true@3
+    txn Sender
+    dig 1
+    extract 0 32
+    ==
+    bz refundAndCloseSession_bool_false@4
+
+refundAndCloseSession_bool_true@3:
+    intc_1 // 1
+
+refundAndCloseSession_bool_merge@5:
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:141
+    // assert(Txn.sender === op.Global.creatorAddress || Txn.sender === data.host, 'Unauthorized')
+    assert // Unauthorized
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:143
+    // const remainingBalance: uint64 = data.totalDeposit - data.lastSettled
+    dupn 2
+    intc_0 // 32
+    extract_uint64
+    swap
+    intc_3 // 40
+    extract_uint64
+    -
+    dup
+    bury 5
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:145
+    // if (remainingBalance > 0) {
+    bz refundAndCloseSession_after_if_else@8
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:146-150
+    // itxn.assetTransfer({
+    //   xferAsset: Asset(USDC_ASSET_ID),
+    //   assetReceiver: viewer,
+    //   assetAmount: remainingBalance,
+    // }).submit()
+    itxn_begin
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:147
+    // xferAsset: Asset(USDC_ASSET_ID),
+    intc 4 // TMPL_USDC_ASSET_ID
+    dig 4
+    itxn_field AssetAmount
+    dig 3
+    itxn_field AssetReceiver
+    itxn_field XferAsset
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:146-150
+    // itxn.assetTransfer({
+    //   xferAsset: Asset(USDC_ASSET_ID),
+    //   assetReceiver: viewer,
+    //   assetAmount: remainingBalance,
+    // }).submit()
+    pushint 4 // 4
+    itxn_field TypeEnum
+    intc_2 // 0
+    itxn_field Fee
+    itxn_submit
+
+refundAndCloseSession_after_if_else@8:
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:153
+    // viewerSession.delete()
+    dig 1
+    box_del
+    pop
+    // smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts:133
+    // refundAndCloseSession(viewer: Account): void {
+    intc_1 // 1
+    return
+
+refundAndCloseSession_bool_false@4:
+    intc_2 // 0
+    b refundAndCloseSession_bool_merge@5

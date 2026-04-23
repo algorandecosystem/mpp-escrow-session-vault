@@ -1,0 +1,4110 @@
+{
+  "version": 3,
+  "sources": [
+    "../../mpp_escrow_session_vault_manager/contract.algo.ts"
+  ],
+  "mappings": "AAiCA;;AAAA;;;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAAA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;;;AAAA;;;;;;;;;;;;;;;;AAAA;AAAA;;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAaE;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AANuB;AAHZ;AAAA;AAAA;AAAA;AAYJ;AAAA;;AAAD;;;AAGc;AAFM;AAAA;;AAAA;;AAAA;AAAA;AAAA;AAAtB;;AAAA;AAAA;AAJJ;AAAA;AAeA;;;AAAA;AAAA;AAAA;AAAA;AAAA;AACS;;;AAAqB;;AAArB;AAAP;AADF;AAAA;AASS;;AAAe;;AAAf;AAAP;AAEA;AACmB;;AACF;;AACF;;;;;;;AAHf;;;;AAAA;;;AAAA;AAHF;AAAA;AAaA;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;;AAAA;AAAA;AAAA;;AAAA;AAAA;AA1CuB;;AAAA;AAHZ;AAAA;AAAA;AAgDF;AAAA;AAAA;;AAAP;AACO;;AAAA;;;AAA0B;;AAA1B;AAAP;AACO;;AAAA;AAAA;AAA4B;;AAA5B;AAAP;AAE0B;AAAA;AAAA;AAC1B;AAAA;AAA4B;;AAAA;AAAA;AAA5B;AAAA;AAD0B;AAAA;AAAA;AAP5B;AAAA;AAeA;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;;AAAA;;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;;;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAzDuB;;AAAA;AAAA;;AAAA;AAHZ;AAAA;AAAA;AAkEF;AAAA;AAAA;;AAAP;AAEmB;AAAA;AAAA;AAEZ;;AAAe;;AAAA;;;AAAf;AAAA;;AAAA;AAAP;AAC4B;;AAAA;AAAA;AAArB;;AAAA;AAAA;;AAAA;;AAAA;AAAP;AAC6B;;AAAA;AAAA;AAAtB;;AAAA;AAAP;AAGoB;;AAAR;AAAkD;;AAAA;AAAlD;AAA4F;;;;;;;;AAA5F;AACL;;AAAA;;AAAA;AAAP;AAEuB;;AAAA;AAAA;AAEvB;AACmB;;;;;;;;AADnB;;;;AAAA;;;AAAA;AAMA;AAAA;;AAAA;AA1BF;AAAA;AAiCA;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;;AAAA;AAAA;AAAA;AAAA;AAAA;AA1FuB;AAHZ;AAAA;AAAA;AA+FF;AAAA;AAAA;;AAAP;AAEmB;AAAA;AACZ;AAAA;AAAA;AAAoB;AAAA;AAAA;AAApB;AALT;AAAA;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAWA;;;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;;;AAAA;AAAA;AAAA;AAAA;AAAA;AArGuB;AAHZ;AAAA;AAAA;AAAA;;AA2GF;AAAA;;AAAP;AAEmB;AAAA;AAGZ;;AAAe;;AAAA;;;AAAf;AAAP;AAEiC;AAAA;AAAA;AAAoB;AAAA;AAAA;AAApB;AAAA;AAEjC;;;AACE;AACmB;;;;;;;;;;;;AADnB;;;;AAAA;;;AAAA;AAOF;;AAAA;;AApBF;AAAA",
+  "op_pc_offset": 2,
+  "pc_events": {
+    "0": {
+      "op": "txn NumAppArgs",
+      "defined_out": [
+        "tmp%0#1"
+      ],
+      "stack_out": [
+        "tmp%0#1"
+      ]
+    },
+    "2": {
+      "op": "bz main___algots__.defaultCreate@14",
+      "stack_out": []
+    },
+    "5": {
+      "op": "txn OnCompletion",
+      "defined_out": [
+        "tmp%2#0"
+      ],
+      "stack_out": [
+        "tmp%2#0"
+      ]
+    },
+    "7": {
+      "op": "!",
+      "defined_out": [
+        "tmp%3#0"
+      ],
+      "stack_out": [
+        "tmp%3#0"
+      ]
+    },
+    "8": {
+      "error": "OnCompletion must be NoOp",
+      "op": "assert // OnCompletion must be NoOp",
+      "stack_out": []
+    },
+    "9": {
+      "op": "txn ApplicationID",
+      "defined_out": [
+        "tmp%4#0"
+      ],
+      "stack_out": [
+        "tmp%4#0"
+      ]
+    },
+    "11": {
+      "op": "assert",
+      "stack_out": []
+    },
+    "12": {
+      "op": "pushbytess 0x2feaf230 0xaa14c4f9 0x7e3f4a68 0x2fabb9f2 0x624e6690 0xea8eb9e5 0xec70fb48 // method \"openSession(address,address)void\", method \"fundMbrPool((address))void\", method \"optInUsdc()void\", method \"deposit(address,address,(address,uint64,uint64))void\", method \"claimVoucher(address,address,uint64,byte[])void\", method \"getRemainingBalance(address,address)uint64\", method \"refundAndCloseSession(address,address)void\"",
+      "defined_out": [
+        "Method(claimVoucher(address,address,uint64,byte[])void)",
+        "Method(deposit(address,address,(address,uint64,uint64))void)",
+        "Method(fundMbrPool((address))void)",
+        "Method(getRemainingBalance(address,address)uint64)",
+        "Method(openSession(address,address)void)",
+        "Method(optInUsdc()void)",
+        "Method(refundAndCloseSession(address,address)void)"
+      ],
+      "stack_out": [
+        "Method(openSession(address,address)void)",
+        "Method(fundMbrPool((address))void)",
+        "Method(optInUsdc()void)",
+        "Method(deposit(address,address,(address,uint64,uint64))void)",
+        "Method(claimVoucher(address,address,uint64,byte[])void)",
+        "Method(getRemainingBalance(address,address)uint64)",
+        "Method(refundAndCloseSession(address,address)void)"
+      ]
+    },
+    "49": {
+      "op": "txna ApplicationArgs 0",
+      "defined_out": [
+        "Method(claimVoucher(address,address,uint64,byte[])void)",
+        "Method(deposit(address,address,(address,uint64,uint64))void)",
+        "Method(fundMbrPool((address))void)",
+        "Method(getRemainingBalance(address,address)uint64)",
+        "Method(openSession(address,address)void)",
+        "Method(optInUsdc()void)",
+        "Method(refundAndCloseSession(address,address)void)",
+        "tmp%6#0"
+      ],
+      "stack_out": [
+        "Method(openSession(address,address)void)",
+        "Method(fundMbrPool((address))void)",
+        "Method(optInUsdc()void)",
+        "Method(deposit(address,address,(address,uint64,uint64))void)",
+        "Method(claimVoucher(address,address,uint64,byte[])void)",
+        "Method(getRemainingBalance(address,address)uint64)",
+        "Method(refundAndCloseSession(address,address)void)",
+        "tmp%6#0"
+      ]
+    },
+    "52": {
+      "op": "match openSession fundMbrPool optInUsdc deposit claimVoucher getRemainingBalance refundAndCloseSession",
+      "stack_out": []
+    },
+    "68": {
+      "op": "err"
+    },
+    "69": {
+      "block": "main___algots__.defaultCreate@14",
+      "stack_in": [],
+      "op": "txn OnCompletion",
+      "defined_out": [
+        "tmp%7#0"
+      ],
+      "stack_out": [
+        "tmp%7#0"
+      ]
+    },
+    "71": {
+      "op": "!",
+      "defined_out": [
+        "tmp%8#0"
+      ],
+      "stack_out": [
+        "tmp%8#0"
+      ]
+    },
+    "72": {
+      "op": "txn ApplicationID",
+      "defined_out": [
+        "tmp%8#0",
+        "tmp%9#0"
+      ],
+      "stack_out": [
+        "tmp%8#0",
+        "tmp%9#0"
+      ]
+    },
+    "74": {
+      "op": "!",
+      "defined_out": [
+        "tmp%10#0",
+        "tmp%8#0"
+      ],
+      "stack_out": [
+        "tmp%8#0",
+        "tmp%10#0"
+      ]
+    },
+    "75": {
+      "op": "&&",
+      "defined_out": [
+        "tmp%11#0"
+      ],
+      "stack_out": [
+        "tmp%11#0"
+      ]
+    },
+    "76": {
+      "error": "OnCompletion must be NoOp && can only call when creating",
+      "op": "assert // OnCompletion must be NoOp && can only call when creating",
+      "stack_out": []
+    },
+    "77": {
+      "op": "intc_1 // 1",
+      "defined_out": [
+        "1"
+      ],
+      "stack_out": [
+        "1"
+      ]
+    },
+    "78": {
+      "op": "return",
+      "stack_out": []
+    },
+    "79": {
+      "subroutine": "smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts::MppEscrowSessionVaultManager.openSession[routing]",
+      "params": {},
+      "block": "openSession",
+      "stack_in": [],
+      "op": "txna ApplicationArgs 1",
+      "defined_out": [
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0"
+      ]
+    },
+    "82": {
+      "op": "dup",
+      "defined_out": [
+        "viewer#0",
+        "viewer#0 (copy)"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "viewer#0 (copy)"
+      ]
+    },
+    "83": {
+      "op": "len",
+      "defined_out": [
+        "len%0#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "len%0#0"
+      ]
+    },
+    "84": {
+      "op": "intc_0 // 32",
+      "defined_out": [
+        "32",
+        "len%0#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "len%0#0",
+        "32"
+      ]
+    },
+    "85": {
+      "op": "==",
+      "defined_out": [
+        "eq%0#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "eq%0#0"
+      ]
+    },
+    "86": {
+      "error": "invalid number of bytes for arc4.static_array<arc4.uint8, 32>",
+      "op": "assert // invalid number of bytes for arc4.static_array<arc4.uint8, 32>",
+      "stack_out": [
+        "viewer#0"
+      ]
+    },
+    "87": {
+      "op": "txna ApplicationArgs 2"
+    },
+    "90": {
+      "op": "dup",
+      "defined_out": [
+        "host#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "host#0"
+      ]
+    },
+    "91": {
+      "op": "cover 2",
+      "defined_out": [
+        "host#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "host#0",
+        "viewer#0",
+        "host#0"
+      ]
+    },
+    "93": {
+      "op": "dup",
+      "defined_out": [
+        "host#0",
+        "host#0 (copy)",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "host#0",
+        "viewer#0",
+        "host#0",
+        "host#0 (copy)"
+      ]
+    },
+    "94": {
+      "op": "len",
+      "defined_out": [
+        "host#0",
+        "len%1#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "host#0",
+        "viewer#0",
+        "host#0",
+        "len%1#0"
+      ]
+    },
+    "95": {
+      "op": "intc_0 // 32",
+      "stack_out": [
+        "host#0",
+        "viewer#0",
+        "host#0",
+        "len%1#0",
+        "32"
+      ]
+    },
+    "96": {
+      "op": "==",
+      "defined_out": [
+        "eq%1#0",
+        "host#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "host#0",
+        "viewer#0",
+        "host#0",
+        "eq%1#0"
+      ]
+    },
+    "97": {
+      "error": "invalid number of bytes for arc4.static_array<arc4.uint8, 32>",
+      "op": "assert // invalid number of bytes for arc4.static_array<arc4.uint8, 32>",
+      "stack_out": [
+        "host#0",
+        "viewer#0",
+        "host#0"
+      ]
+    },
+    "98": {
+      "op": "concat",
+      "defined_out": [
+        "host#0",
+        "materialized_values%0#0"
+      ],
+      "stack_out": [
+        "host#0",
+        "materialized_values%0#0"
+      ]
+    },
+    "99": {
+      "op": "bytec_0 // \"s\"",
+      "defined_out": [
+        "\"s\"",
+        "host#0",
+        "materialized_values%0#0"
+      ],
+      "stack_out": [
+        "host#0",
+        "materialized_values%0#0",
+        "\"s\""
+      ]
+    },
+    "100": {
+      "op": "swap",
+      "stack_out": [
+        "host#0",
+        "\"s\"",
+        "materialized_values%0#0"
+      ]
+    },
+    "101": {
+      "op": "concat",
+      "defined_out": [
+        "host#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "host#0",
+        "viewerSession#0"
+      ]
+    },
+    "102": {
+      "op": "dup",
+      "defined_out": [
+        "host#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "host#0",
+        "viewerSession#0",
+        "viewerSession#0"
+      ]
+    },
+    "103": {
+      "op": "box_len",
+      "defined_out": [
+        "_%0#0",
+        "host#0",
+        "maybe_exists%0#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "host#0",
+        "viewerSession#0",
+        "_%0#0",
+        "maybe_exists%0#0"
+      ]
+    },
+    "104": {
+      "op": "bury 1",
+      "stack_out": [
+        "host#0",
+        "viewerSession#0",
+        "maybe_exists%0#0"
+      ]
+    },
+    "106": {
+      "op": "bnz openSession_after_if_else@3",
+      "stack_out": [
+        "host#0",
+        "viewerSession#0"
+      ]
+    },
+    "109": {
+      "op": "intc_2 // 0",
+      "stack_out": [
+        "host#0",
+        "viewerSession#0",
+        "0"
+      ]
+    },
+    "110": {
+      "op": "itob",
+      "defined_out": [
+        "aggregate%val_as_bytes%0#0",
+        "host#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "host#0",
+        "viewerSession#0",
+        "aggregate%val_as_bytes%0#0"
+      ]
+    },
+    "111": {
+      "op": "dig 2",
+      "stack_out": [
+        "host#0",
+        "viewerSession#0",
+        "aggregate%val_as_bytes%0#0",
+        "host#0"
+      ]
+    },
+    "113": {
+      "op": "dig 1",
+      "defined_out": [
+        "aggregate%val_as_bytes%0#0",
+        "aggregate%val_as_bytes%0#0 (copy)",
+        "host#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "host#0",
+        "viewerSession#0",
+        "aggregate%val_as_bytes%0#0",
+        "host#0",
+        "aggregate%val_as_bytes%0#0 (copy)"
+      ]
+    },
+    "115": {
+      "op": "concat",
+      "defined_out": [
+        "aggregate%head%1#0",
+        "aggregate%val_as_bytes%0#0",
+        "host#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "host#0",
+        "viewerSession#0",
+        "aggregate%val_as_bytes%0#0",
+        "aggregate%head%1#0"
+      ]
+    },
+    "116": {
+      "op": "swap",
+      "stack_out": [
+        "host#0",
+        "viewerSession#0",
+        "aggregate%head%1#0",
+        "aggregate%val_as_bytes%0#0"
+      ]
+    },
+    "117": {
+      "op": "concat",
+      "defined_out": [
+        "aggregate%head%2#0",
+        "host#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "host#0",
+        "viewerSession#0",
+        "aggregate%head%2#0"
+      ]
+    },
+    "118": {
+      "op": "dig 1",
+      "stack_out": [
+        "host#0",
+        "viewerSession#0",
+        "aggregate%head%2#0",
+        "viewerSession#0"
+      ]
+    },
+    "120": {
+      "op": "swap",
+      "stack_out": [
+        "host#0",
+        "viewerSession#0",
+        "viewerSession#0",
+        "aggregate%head%2#0"
+      ]
+    },
+    "121": {
+      "op": "box_put",
+      "stack_out": [
+        "host#0",
+        "viewerSession#0"
+      ]
+    },
+    "122": {
+      "block": "openSession_after_if_else@3",
+      "stack_in": [
+        "host#0",
+        "viewerSession#0"
+      ],
+      "op": "intc_1 // 1",
+      "defined_out": [
+        "1"
+      ],
+      "stack_out": [
+        "host#0",
+        "viewerSession#0",
+        "1"
+      ]
+    },
+    "123": {
+      "op": "return",
+      "stack_out": [
+        "host#0",
+        "viewerSession#0"
+      ]
+    },
+    "124": {
+      "subroutine": "smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts::MppEscrowSessionVaultManager.fundMbrPool[routing]",
+      "params": {},
+      "block": "fundMbrPool",
+      "stack_in": [],
+      "op": "txna ApplicationArgs 1",
+      "defined_out": [
+        "payment#0"
+      ],
+      "stack_out": [
+        "payment#0"
+      ]
+    },
+    "127": {
+      "op": "dup",
+      "defined_out": [
+        "payment#0",
+        "payment#0 (copy)"
+      ],
+      "stack_out": [
+        "payment#0",
+        "payment#0 (copy)"
+      ]
+    },
+    "128": {
+      "op": "len",
+      "defined_out": [
+        "len%0#0",
+        "payment#0"
+      ],
+      "stack_out": [
+        "payment#0",
+        "len%0#0"
+      ]
+    },
+    "129": {
+      "op": "intc_0 // 32",
+      "defined_out": [
+        "32",
+        "len%0#0",
+        "payment#0"
+      ],
+      "stack_out": [
+        "payment#0",
+        "len%0#0",
+        "32"
+      ]
+    },
+    "130": {
+      "op": "==",
+      "defined_out": [
+        "eq%0#0",
+        "payment#0"
+      ],
+      "stack_out": [
+        "payment#0",
+        "eq%0#0"
+      ]
+    },
+    "131": {
+      "error": "invalid number of bytes for ObjectAACF8510",
+      "op": "assert // invalid number of bytes for ObjectAACF8510",
+      "stack_out": [
+        "payment#0"
+      ]
+    },
+    "132": {
+      "op": "extract 0 32",
+      "defined_out": [
+        "aggregate%extract%0#0"
+      ],
+      "stack_out": [
+        "aggregate%extract%0#0"
+      ]
+    },
+    "135": {
+      "op": "global CurrentApplicationAddress",
+      "defined_out": [
+        "aggregate%extract%0#0",
+        "tmp%0#1"
+      ],
+      "stack_out": [
+        "aggregate%extract%0#0",
+        "tmp%0#1"
+      ]
+    },
+    "137": {
+      "op": "==",
+      "defined_out": [
+        "tmp%1#0"
+      ],
+      "stack_out": [
+        "tmp%1#0"
+      ]
+    },
+    "138": {
+      "error": "Payment must be to contract",
+      "op": "assert // Payment must be to contract",
+      "stack_out": []
+    },
+    "139": {
+      "op": "intc_1 // 1",
+      "defined_out": [
+        "1"
+      ],
+      "stack_out": [
+        "1"
+      ]
+    },
+    "140": {
+      "op": "return",
+      "stack_out": []
+    },
+    "141": {
+      "subroutine": "smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts::MppEscrowSessionVaultManager.optInUsdc[routing]",
+      "params": {},
+      "block": "optInUsdc",
+      "stack_in": [],
+      "op": "txn Sender",
+      "defined_out": [
+        "tmp%0#0"
+      ],
+      "stack_out": [
+        "tmp%0#0"
+      ]
+    },
+    "143": {
+      "op": "global CreatorAddress",
+      "defined_out": [
+        "tmp%0#0",
+        "tmp%1#0"
+      ],
+      "stack_out": [
+        "tmp%0#0",
+        "tmp%1#0"
+      ]
+    },
+    "145": {
+      "op": "==",
+      "defined_out": [
+        "tmp%2#0"
+      ],
+      "stack_out": [
+        "tmp%2#0"
+      ]
+    },
+    "146": {
+      "error": "Only creator can opt in USDC",
+      "op": "assert // Only creator can opt in USDC",
+      "stack_out": []
+    },
+    "147": {
+      "op": "itxn_begin"
+    },
+    "148": {
+      "op": "intc 4 // TMPL_USDC_ASSET_ID",
+      "defined_out": [
+        "inner_txn_params%0%%param_XferAsset_idx_0#0"
+      ],
+      "stack_out": [
+        "inner_txn_params%0%%param_XferAsset_idx_0#0"
+      ]
+    },
+    "150": {
+      "op": "global CurrentApplicationAddress",
+      "defined_out": [
+        "inner_txn_params%0%%param_AssetReceiver_idx_0#0",
+        "inner_txn_params%0%%param_XferAsset_idx_0#0"
+      ],
+      "stack_out": [
+        "inner_txn_params%0%%param_XferAsset_idx_0#0",
+        "inner_txn_params%0%%param_AssetReceiver_idx_0#0"
+      ]
+    },
+    "152": {
+      "op": "intc_2 // 0",
+      "defined_out": [
+        "0",
+        "inner_txn_params%0%%param_AssetReceiver_idx_0#0",
+        "inner_txn_params%0%%param_XferAsset_idx_0#0"
+      ],
+      "stack_out": [
+        "inner_txn_params%0%%param_XferAsset_idx_0#0",
+        "inner_txn_params%0%%param_AssetReceiver_idx_0#0",
+        "0"
+      ]
+    },
+    "153": {
+      "op": "itxn_field AssetAmount",
+      "stack_out": [
+        "inner_txn_params%0%%param_XferAsset_idx_0#0",
+        "inner_txn_params%0%%param_AssetReceiver_idx_0#0"
+      ]
+    },
+    "155": {
+      "op": "itxn_field AssetReceiver",
+      "stack_out": [
+        "inner_txn_params%0%%param_XferAsset_idx_0#0"
+      ]
+    },
+    "157": {
+      "op": "itxn_field XferAsset",
+      "stack_out": []
+    },
+    "159": {
+      "op": "pushint 4 // 4",
+      "defined_out": [
+        "4"
+      ],
+      "stack_out": [
+        "4"
+      ]
+    },
+    "161": {
+      "op": "itxn_field TypeEnum",
+      "stack_out": []
+    },
+    "163": {
+      "op": "intc_2 // 0",
+      "stack_out": [
+        "0"
+      ]
+    },
+    "164": {
+      "op": "itxn_field Fee",
+      "stack_out": []
+    },
+    "166": {
+      "op": "itxn_submit"
+    },
+    "167": {
+      "op": "intc_1 // 1",
+      "defined_out": [
+        "1"
+      ],
+      "stack_out": [
+        "1"
+      ]
+    },
+    "168": {
+      "op": "return",
+      "stack_out": []
+    },
+    "169": {
+      "subroutine": "smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts::MppEscrowSessionVaultManager.deposit[routing]",
+      "params": {},
+      "block": "deposit",
+      "stack_in": [],
+      "op": "txna ApplicationArgs 1",
+      "defined_out": [
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0"
+      ]
+    },
+    "172": {
+      "op": "dup",
+      "defined_out": [
+        "viewer#0",
+        "viewer#0 (copy)"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "viewer#0 (copy)"
+      ]
+    },
+    "173": {
+      "op": "len",
+      "defined_out": [
+        "len%0#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "len%0#0"
+      ]
+    },
+    "174": {
+      "op": "intc_0 // 32",
+      "defined_out": [
+        "32",
+        "len%0#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "len%0#0",
+        "32"
+      ]
+    },
+    "175": {
+      "op": "==",
+      "defined_out": [
+        "eq%0#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "eq%0#0"
+      ]
+    },
+    "176": {
+      "error": "invalid number of bytes for arc4.static_array<arc4.uint8, 32>",
+      "op": "assert // invalid number of bytes for arc4.static_array<arc4.uint8, 32>",
+      "stack_out": [
+        "viewer#0"
+      ]
+    },
+    "177": {
+      "op": "txna ApplicationArgs 2",
+      "defined_out": [
+        "host#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0"
+      ]
+    },
+    "180": {
+      "op": "dup",
+      "defined_out": [
+        "host#0",
+        "host#0 (copy)",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "host#0 (copy)"
+      ]
+    },
+    "181": {
+      "op": "len",
+      "defined_out": [
+        "host#0",
+        "len%1#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "len%1#0"
+      ]
+    },
+    "182": {
+      "op": "intc_0 // 32",
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "len%1#0",
+        "32"
+      ]
+    },
+    "183": {
+      "op": "==",
+      "defined_out": [
+        "eq%1#0",
+        "host#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "eq%1#0"
+      ]
+    },
+    "184": {
+      "error": "invalid number of bytes for arc4.static_array<arc4.uint8, 32>",
+      "op": "assert // invalid number of bytes for arc4.static_array<arc4.uint8, 32>",
+      "stack_out": [
+        "viewer#0",
+        "host#0"
+      ]
+    },
+    "185": {
+      "op": "txna ApplicationArgs 3",
+      "defined_out": [
+        "host#0",
+        "payment#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "payment#0"
+      ]
+    },
+    "188": {
+      "op": "dup",
+      "defined_out": [
+        "host#0",
+        "payment#0",
+        "payment#0 (copy)",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "payment#0",
+        "payment#0 (copy)"
+      ]
+    },
+    "189": {
+      "op": "len",
+      "defined_out": [
+        "host#0",
+        "len%2#0",
+        "payment#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "payment#0",
+        "len%2#0"
+      ]
+    },
+    "190": {
+      "op": "pushint 48 // 48",
+      "defined_out": [
+        "48",
+        "host#0",
+        "len%2#0",
+        "payment#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "payment#0",
+        "len%2#0",
+        "48"
+      ]
+    },
+    "192": {
+      "op": "==",
+      "defined_out": [
+        "eq%2#0",
+        "host#0",
+        "payment#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "payment#0",
+        "eq%2#0"
+      ]
+    },
+    "193": {
+      "error": "invalid number of bytes for ObjectC0D6902C",
+      "op": "assert // invalid number of bytes for ObjectC0D6902C",
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "payment#0"
+      ]
+    },
+    "194": {
+      "op": "cover 2",
+      "stack_out": [
+        "payment#0",
+        "viewer#0",
+        "host#0"
+      ]
+    },
+    "196": {
+      "op": "concat",
+      "defined_out": [
+        "materialized_values%0#0",
+        "payment#0"
+      ],
+      "stack_out": [
+        "payment#0",
+        "materialized_values%0#0"
+      ]
+    },
+    "197": {
+      "op": "bytec_0 // \"s\"",
+      "defined_out": [
+        "\"s\"",
+        "materialized_values%0#0",
+        "payment#0"
+      ],
+      "stack_out": [
+        "payment#0",
+        "materialized_values%0#0",
+        "\"s\""
+      ]
+    },
+    "198": {
+      "op": "swap",
+      "stack_out": [
+        "payment#0",
+        "\"s\"",
+        "materialized_values%0#0"
+      ]
+    },
+    "199": {
+      "op": "concat",
+      "defined_out": [
+        "payment#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "payment#0",
+        "viewerSession#0"
+      ]
+    },
+    "200": {
+      "op": "dup",
+      "defined_out": [
+        "payment#0",
+        "viewerSession#0",
+        "viewerSession#0 (copy)"
+      ],
+      "stack_out": [
+        "payment#0",
+        "viewerSession#0",
+        "viewerSession#0 (copy)"
+      ]
+    },
+    "201": {
+      "op": "box_len",
+      "defined_out": [
+        "_%0#0",
+        "maybe_exists%0#0",
+        "payment#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "payment#0",
+        "viewerSession#0",
+        "_%0#0",
+        "maybe_exists%0#0"
+      ]
+    },
+    "202": {
+      "op": "bury 1",
+      "stack_out": [
+        "payment#0",
+        "viewerSession#0",
+        "maybe_exists%0#0"
+      ]
+    },
+    "204": {
+      "error": "Session does not exist",
+      "op": "assert // Session does not exist",
+      "stack_out": [
+        "payment#0",
+        "viewerSession#0"
+      ]
+    },
+    "205": {
+      "op": "dig 1",
+      "stack_out": [
+        "payment#0",
+        "viewerSession#0",
+        "payment#0 (copy)"
+      ]
+    },
+    "207": {
+      "op": "extract 0 32",
+      "defined_out": [
+        "aggregate%extract%0#0",
+        "payment#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "payment#0",
+        "viewerSession#0",
+        "aggregate%extract%0#0"
+      ]
+    },
+    "210": {
+      "op": "global CurrentApplicationAddress",
+      "defined_out": [
+        "aggregate%extract%0#0",
+        "payment#0",
+        "tmp%1#1",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "payment#0",
+        "viewerSession#0",
+        "aggregate%extract%0#0",
+        "tmp%1#1"
+      ]
+    },
+    "212": {
+      "op": "==",
+      "defined_out": [
+        "payment#0",
+        "tmp%2#1",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "payment#0",
+        "viewerSession#0",
+        "tmp%2#1"
+      ]
+    },
+    "213": {
+      "error": "Asset transfer must be to contract",
+      "op": "assert // Asset transfer must be to contract",
+      "stack_out": [
+        "payment#0",
+        "viewerSession#0"
+      ]
+    },
+    "214": {
+      "op": "dig 1",
+      "stack_out": [
+        "payment#0",
+        "viewerSession#0",
+        "payment#0 (copy)"
+      ]
+    },
+    "216": {
+      "op": "intc_3 // 40",
+      "defined_out": [
+        "40",
+        "payment#0",
+        "payment#0 (copy)",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "payment#0",
+        "viewerSession#0",
+        "payment#0 (copy)",
+        "40"
+      ]
+    },
+    "217": {
+      "op": "extract_uint64",
+      "defined_out": [
+        "payment#0",
+        "values%1#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "payment#0",
+        "viewerSession#0",
+        "values%1#0"
+      ]
+    },
+    "218": {
+      "op": "intc 4 // TMPL_USDC_ASSET_ID",
+      "defined_out": [
+        "TMPL_USDC_ASSET_ID",
+        "payment#0",
+        "values%1#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "payment#0",
+        "viewerSession#0",
+        "values%1#0",
+        "TMPL_USDC_ASSET_ID"
+      ]
+    },
+    "220": {
+      "op": "==",
+      "defined_out": [
+        "payment#0",
+        "tmp%3#1",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "payment#0",
+        "viewerSession#0",
+        "tmp%3#1"
+      ]
+    },
+    "221": {
+      "error": "Only configured USDC accepted",
+      "op": "assert // Only configured USDC accepted",
+      "stack_out": [
+        "payment#0",
+        "viewerSession#0"
+      ]
+    },
+    "222": {
+      "op": "dup",
+      "stack_out": [
+        "payment#0",
+        "viewerSession#0",
+        "viewerSession#0 (copy)"
+      ]
+    },
+    "223": {
+      "op": "box_get",
+      "defined_out": [
+        "aggregate%box_get%1#0",
+        "currentData#0",
+        "payment#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "payment#0",
+        "viewerSession#0",
+        "currentData#0",
+        "aggregate%box_get%1#0"
+      ]
+    },
+    "224": {
+      "op": "pop",
+      "stack_out": [
+        "payment#0",
+        "viewerSession#0",
+        "currentData#0"
+      ]
+    },
+    "225": {
+      "op": "intc_0 // 32",
+      "stack_out": [
+        "payment#0",
+        "viewerSession#0",
+        "currentData#0",
+        "32"
+      ]
+    },
+    "226": {
+      "op": "extract_uint64",
+      "defined_out": [
+        "payment#0",
+        "values%2#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "payment#0",
+        "viewerSession#0",
+        "values%2#0"
+      ]
+    },
+    "227": {
+      "op": "uncover 2",
+      "stack_out": [
+        "viewerSession#0",
+        "values%2#0",
+        "payment#0"
+      ]
+    },
+    "229": {
+      "op": "intc_0 // 32",
+      "stack_out": [
+        "viewerSession#0",
+        "values%2#0",
+        "payment#0",
+        "32"
+      ]
+    },
+    "230": {
+      "op": "extract_uint64",
+      "defined_out": [
+        "values%2#0",
+        "values%3#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewerSession#0",
+        "values%2#0",
+        "values%3#0"
+      ]
+    },
+    "231": {
+      "op": "+",
+      "defined_out": [
+        "tmp%4#1",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewerSession#0",
+        "tmp%4#1"
+      ]
+    },
+    "232": {
+      "op": "itob",
+      "defined_out": [
+        "aggregate%val_as_bytes%0#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewerSession#0",
+        "aggregate%val_as_bytes%0#0"
+      ]
+    },
+    "233": {
+      "op": "intc_0 // 32"
+    },
+    "234": {
+      "op": "swap",
+      "stack_out": [
+        "viewerSession#0",
+        "32",
+        "aggregate%val_as_bytes%0#0"
+      ]
+    },
+    "235": {
+      "op": "box_replace",
+      "stack_out": []
+    },
+    "236": {
+      "op": "intc_1 // 1",
+      "defined_out": [
+        "1"
+      ],
+      "stack_out": [
+        "1"
+      ]
+    },
+    "237": {
+      "op": "return",
+      "stack_out": []
+    },
+    "238": {
+      "subroutine": "smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts::MppEscrowSessionVaultManager.claimVoucher[routing]",
+      "params": {},
+      "block": "claimVoucher",
+      "stack_in": [],
+      "op": "txna ApplicationArgs 1"
+    },
+    "241": {
+      "op": "dup",
+      "defined_out": [
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "viewer#0"
+      ]
+    },
+    "242": {
+      "op": "len",
+      "defined_out": [
+        "len%0#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "len%0#0"
+      ]
+    },
+    "243": {
+      "op": "intc_0 // 32",
+      "defined_out": [
+        "32",
+        "len%0#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "len%0#0",
+        "32"
+      ]
+    },
+    "244": {
+      "op": "==",
+      "defined_out": [
+        "eq%0#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "eq%0#0"
+      ]
+    },
+    "245": {
+      "error": "invalid number of bytes for arc4.static_array<arc4.uint8, 32>",
+      "op": "assert // invalid number of bytes for arc4.static_array<arc4.uint8, 32>",
+      "stack_out": [
+        "viewer#0"
+      ]
+    },
+    "246": {
+      "op": "txna ApplicationArgs 2"
+    },
+    "249": {
+      "op": "dup",
+      "defined_out": [
+        "host#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "host#0"
+      ]
+    },
+    "250": {
+      "op": "len",
+      "defined_out": [
+        "host#0",
+        "len%1#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "len%1#0"
+      ]
+    },
+    "251": {
+      "op": "intc_0 // 32",
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "len%1#0",
+        "32"
+      ]
+    },
+    "252": {
+      "op": "==",
+      "defined_out": [
+        "eq%1#0",
+        "host#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "eq%1#0"
+      ]
+    },
+    "253": {
+      "error": "invalid number of bytes for arc4.static_array<arc4.uint8, 32>",
+      "op": "assert // invalid number of bytes for arc4.static_array<arc4.uint8, 32>",
+      "stack_out": [
+        "viewer#0",
+        "host#0"
+      ]
+    },
+    "254": {
+      "op": "txna ApplicationArgs 3"
+    },
+    "257": {
+      "op": "dupn 2",
+      "defined_out": [
+        "host#0",
+        "tmp%4#0",
+        "tmp%4#0 (copy)",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "tmp%4#0",
+        "tmp%4#0 (copy)"
+      ]
+    },
+    "259": {
+      "op": "len",
+      "defined_out": [
+        "host#0",
+        "len%2#0",
+        "tmp%4#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "tmp%4#0",
+        "len%2#0"
+      ]
+    },
+    "260": {
+      "op": "pushint 8 // 8",
+      "defined_out": [
+        "8",
+        "host#0",
+        "len%2#0",
+        "tmp%4#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "tmp%4#0",
+        "len%2#0",
+        "8"
+      ]
+    },
+    "262": {
+      "op": "==",
+      "defined_out": [
+        "eq%2#0",
+        "host#0",
+        "tmp%4#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "tmp%4#0",
+        "eq%2#0"
+      ]
+    },
+    "263": {
+      "error": "invalid number of bytes for arc4.uint64",
+      "op": "assert // invalid number of bytes for arc4.uint64",
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "tmp%4#0"
+      ]
+    },
+    "264": {
+      "op": "btoi",
+      "defined_out": [
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0"
+      ]
+    },
+    "265": {
+      "op": "txna ApplicationArgs 4",
+      "defined_out": [
+        "host#0",
+        "tmp%4#0",
+        "tmp%6#0",
+        "totalAmountClaimed#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "tmp%6#0"
+      ]
+    },
+    "268": {
+      "op": "dup",
+      "defined_out": [
+        "host#0",
+        "tmp%4#0",
+        "tmp%6#0",
+        "tmp%6#0 (copy)",
+        "totalAmountClaimed#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "tmp%6#0",
+        "tmp%6#0 (copy)"
+      ]
+    },
+    "269": {
+      "op": "intc_2 // 0",
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "tmp%6#0",
+        "tmp%6#0 (copy)",
+        "0"
+      ]
+    },
+    "270": {
+      "error": "invalid array length header",
+      "op": "extract_uint16 // on error: invalid array length header",
+      "defined_out": [
+        "aggregate%array_length%0#0",
+        "host#0",
+        "tmp%4#0",
+        "tmp%6#0",
+        "totalAmountClaimed#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "tmp%6#0",
+        "aggregate%array_length%0#0"
+      ]
+    },
+    "271": {
+      "op": "pushint 2 // 2",
+      "defined_out": [
+        "2",
+        "aggregate%array_length%0#0",
+        "host#0",
+        "tmp%4#0",
+        "tmp%6#0",
+        "totalAmountClaimed#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "tmp%6#0",
+        "aggregate%array_length%0#0",
+        "2"
+      ]
+    },
+    "273": {
+      "op": "+",
+      "defined_out": [
+        "add%0#0",
+        "host#0",
+        "tmp%4#0",
+        "tmp%6#0",
+        "totalAmountClaimed#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "tmp%6#0",
+        "add%0#0"
+      ]
+    },
+    "274": {
+      "op": "dig 1",
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "tmp%6#0",
+        "add%0#0",
+        "tmp%6#0 (copy)"
+      ]
+    },
+    "276": {
+      "op": "len",
+      "defined_out": [
+        "add%0#0",
+        "host#0",
+        "len%3#0",
+        "tmp%4#0",
+        "tmp%6#0",
+        "totalAmountClaimed#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "tmp%6#0",
+        "add%0#0",
+        "len%3#0"
+      ]
+    },
+    "277": {
+      "op": "==",
+      "defined_out": [
+        "eq%3#0",
+        "host#0",
+        "tmp%4#0",
+        "tmp%6#0",
+        "totalAmountClaimed#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "tmp%6#0",
+        "eq%3#0"
+      ]
+    },
+    "278": {
+      "error": "invalid number of bytes for arc4.dynamic_array<arc4.uint8>",
+      "op": "assert // invalid number of bytes for arc4.dynamic_array<arc4.uint8>",
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "tmp%6#0"
+      ]
+    },
+    "279": {
+      "op": "extract 2 0",
+      "defined_out": [
+        "host#0",
+        "signature#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0"
+      ]
+    },
+    "282": {
+      "block": "claimVoucher_while_top@2",
+      "stack_in": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0"
+      ],
+      "op": "pushint 3010 // 3010",
+      "defined_out": [
+        "3010"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "3010"
+      ]
+    },
+    "285": {
+      "op": "global OpcodeBudget",
+      "defined_out": [
+        "3010",
+        "tmp%1#2"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "3010",
+        "tmp%1#2"
+      ]
+    },
+    "287": {
+      "op": ">",
+      "defined_out": [
+        "tmp%2#1"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "tmp%2#1"
+      ]
+    },
+    "288": {
+      "op": "bz claimVoucher_after_while@7",
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0"
+      ]
+    },
+    "291": {
+      "op": "itxn_begin"
+    },
+    "292": {
+      "op": "pushint 6 // appl",
+      "defined_out": [
+        "appl"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "appl"
+      ]
+    },
+    "294": {
+      "op": "itxn_field TypeEnum",
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0"
+      ]
+    },
+    "296": {
+      "op": "pushint 5 // DeleteApplication",
+      "defined_out": [
+        "DeleteApplication"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "DeleteApplication"
+      ]
+    },
+    "298": {
+      "op": "itxn_field OnCompletion",
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0"
+      ]
+    },
+    "300": {
+      "op": "bytec_1 // 0x068101",
+      "defined_out": [
+        "0x068101"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "0x068101"
+      ]
+    },
+    "301": {
+      "op": "itxn_field ApprovalProgram",
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0"
+      ]
+    },
+    "303": {
+      "op": "bytec_1 // 0x068101",
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "0x068101"
+      ]
+    },
+    "304": {
+      "op": "itxn_field ClearStateProgram",
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0"
+      ]
+    },
+    "306": {
+      "op": "intc_2 // 0",
+      "defined_out": [
+        "0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "0"
+      ]
+    },
+    "307": {
+      "op": "itxn_field Fee",
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0"
+      ]
+    },
+    "309": {
+      "op": "itxn_submit"
+    },
+    "310": {
+      "op": "b claimVoucher_while_top@2"
+    },
+    "313": {
+      "block": "claimVoucher_after_while@7",
+      "stack_in": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0"
+      ],
+      "op": "dig 4",
+      "defined_out": [
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0"
+      ]
+    },
+    "315": {
+      "op": "dup",
+      "defined_out": [
+        "viewer#0",
+        "viewer#0 (copy)"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "viewer#0 (copy)"
+      ]
+    },
+    "316": {
+      "op": "dig 5",
+      "defined_out": [
+        "host#0",
+        "viewer#0",
+        "viewer#0 (copy)"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "viewer#0 (copy)",
+        "host#0"
+      ]
+    },
+    "318": {
+      "op": "concat",
+      "defined_out": [
+        "host#0",
+        "materialized_values%0#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "materialized_values%0#0"
+      ]
+    },
+    "319": {
+      "op": "bytec_0 // \"s\"",
+      "defined_out": [
+        "\"s\"",
+        "host#0",
+        "materialized_values%0#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "materialized_values%0#0",
+        "\"s\""
+      ]
+    },
+    "320": {
+      "op": "swap",
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "\"s\"",
+        "materialized_values%0#0"
+      ]
+    },
+    "321": {
+      "op": "concat",
+      "defined_out": [
+        "host#0",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "viewerSession#0"
+      ]
+    },
+    "322": {
+      "op": "dup",
+      "defined_out": [
+        "host#0",
+        "viewer#0",
+        "viewerSession#0",
+        "viewerSession#0 (copy)"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "viewerSession#0",
+        "viewerSession#0 (copy)"
+      ]
+    },
+    "323": {
+      "op": "box_len",
+      "defined_out": [
+        "_%0#0",
+        "host#0",
+        "maybe_exists%0#0",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "viewerSession#0",
+        "_%0#0",
+        "maybe_exists%0#0"
+      ]
+    },
+    "324": {
+      "op": "bury 1",
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "viewerSession#0",
+        "maybe_exists%0#0"
+      ]
+    },
+    "326": {
+      "error": "Session does not exist",
+      "op": "assert // Session does not exist",
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "viewerSession#0"
+      ]
+    },
+    "327": {
+      "op": "dup",
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "viewerSession#0",
+        "viewerSession#0 (copy)"
+      ]
+    },
+    "328": {
+      "op": "box_get",
+      "defined_out": [
+        "aggregate%box_get%1#0",
+        "data#0",
+        "host#0",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "viewerSession#0",
+        "data#0",
+        "aggregate%box_get%1#0"
+      ]
+    },
+    "329": {
+      "op": "pop",
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "viewerSession#0",
+        "data#0"
+      ]
+    },
+    "330": {
+      "op": "txn Sender",
+      "defined_out": [
+        "data#0",
+        "host#0",
+        "tmp%1#1",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "viewerSession#0",
+        "data#0",
+        "tmp%1#1"
+      ]
+    },
+    "332": {
+      "op": "dig 1",
+      "defined_out": [
+        "data#0",
+        "data#0 (copy)",
+        "host#0",
+        "tmp%1#1",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "viewerSession#0",
+        "data#0",
+        "tmp%1#1",
+        "data#0 (copy)"
+      ]
+    },
+    "334": {
+      "op": "extract 0 32",
+      "defined_out": [
+        "aggregate%extract%0#0",
+        "data#0",
+        "host#0",
+        "tmp%1#1",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "viewerSession#0",
+        "data#0",
+        "tmp%1#1",
+        "aggregate%extract%0#0"
+      ]
+    },
+    "337": {
+      "op": "swap",
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "viewerSession#0",
+        "data#0",
+        "aggregate%extract%0#0",
+        "tmp%1#1"
+      ]
+    },
+    "338": {
+      "op": "dig 1",
+      "defined_out": [
+        "aggregate%extract%0#0",
+        "aggregate%extract%0#0 (copy)",
+        "data#0",
+        "host#0",
+        "tmp%1#1",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "viewerSession#0",
+        "data#0",
+        "aggregate%extract%0#0",
+        "tmp%1#1",
+        "aggregate%extract%0#0 (copy)"
+      ]
+    },
+    "340": {
+      "op": "==",
+      "defined_out": [
+        "aggregate%extract%0#0",
+        "data#0",
+        "host#0",
+        "tmp%2#1",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "viewerSession#0",
+        "data#0",
+        "aggregate%extract%0#0",
+        "tmp%2#1"
+      ]
+    },
+    "341": {
+      "error": "Only host can claim",
+      "op": "assert // Only host can claim",
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "viewerSession#0",
+        "data#0",
+        "aggregate%extract%0#0"
+      ]
+    },
+    "342": {
+      "op": "dig 1",
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "viewerSession#0",
+        "data#0",
+        "aggregate%extract%0#0",
+        "data#0 (copy)"
+      ]
+    },
+    "344": {
+      "op": "intc_3 // 40",
+      "defined_out": [
+        "40",
+        "aggregate%extract%0#0",
+        "data#0",
+        "data#0 (copy)",
+        "host#0",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "viewerSession#0",
+        "data#0",
+        "aggregate%extract%0#0",
+        "data#0 (copy)",
+        "40"
+      ]
+    },
+    "345": {
+      "op": "extract_uint64",
+      "defined_out": [
+        "aggregate%extract%0#0",
+        "data#0",
+        "host#0",
+        "values%1#0",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "viewerSession#0",
+        "data#0",
+        "aggregate%extract%0#0",
+        "values%1#0"
+      ]
+    },
+    "346": {
+      "op": "dig 6",
+      "defined_out": [
+        "aggregate%extract%0#0",
+        "data#0",
+        "host#0",
+        "totalAmountClaimed#0",
+        "values%1#0",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "viewerSession#0",
+        "data#0",
+        "aggregate%extract%0#0",
+        "values%1#0",
+        "totalAmountClaimed#0"
+      ]
+    },
+    "348": {
+      "op": "dup",
+      "defined_out": [
+        "aggregate%extract%0#0",
+        "data#0",
+        "host#0",
+        "totalAmountClaimed#0",
+        "totalAmountClaimed#0 (copy)",
+        "values%1#0",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "viewerSession#0",
+        "data#0",
+        "aggregate%extract%0#0",
+        "values%1#0",
+        "totalAmountClaimed#0 (copy)",
+        "totalAmountClaimed#0 (copy)"
+      ]
+    },
+    "349": {
+      "op": "cover 3",
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "viewerSession#0",
+        "data#0",
+        "totalAmountClaimed#0",
+        "aggregate%extract%0#0",
+        "values%1#0",
+        "totalAmountClaimed#0 (copy)"
+      ]
+    },
+    "351": {
+      "op": "dig 1",
+      "defined_out": [
+        "aggregate%extract%0#0",
+        "data#0",
+        "host#0",
+        "totalAmountClaimed#0",
+        "totalAmountClaimed#0 (copy)",
+        "values%1#0",
+        "values%1#0 (copy)",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "viewerSession#0",
+        "data#0",
+        "totalAmountClaimed#0",
+        "aggregate%extract%0#0",
+        "values%1#0",
+        "totalAmountClaimed#0 (copy)",
+        "values%1#0 (copy)"
+      ]
+    },
+    "353": {
+      "op": ">",
+      "defined_out": [
+        "aggregate%extract%0#0",
+        "data#0",
+        "host#0",
+        "tmp%3#1",
+        "totalAmountClaimed#0",
+        "values%1#0",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "viewerSession#0",
+        "data#0",
+        "totalAmountClaimed#0",
+        "aggregate%extract%0#0",
+        "values%1#0",
+        "tmp%3#1"
+      ]
+    },
+    "354": {
+      "error": "Nothing new to claim",
+      "op": "assert // Nothing new to claim",
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "viewerSession#0",
+        "data#0",
+        "totalAmountClaimed#0",
+        "aggregate%extract%0#0",
+        "values%1#0"
+      ]
+    },
+    "355": {
+      "op": "uncover 3",
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "viewerSession#0",
+        "totalAmountClaimed#0",
+        "aggregate%extract%0#0",
+        "values%1#0",
+        "data#0"
+      ]
+    },
+    "357": {
+      "op": "intc_0 // 32",
+      "defined_out": [
+        "32",
+        "aggregate%extract%0#0",
+        "data#0",
+        "host#0",
+        "totalAmountClaimed#0",
+        "values%1#0",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "viewerSession#0",
+        "totalAmountClaimed#0",
+        "aggregate%extract%0#0",
+        "values%1#0",
+        "data#0",
+        "32"
+      ]
+    },
+    "358": {
+      "op": "extract_uint64",
+      "defined_out": [
+        "aggregate%extract%0#0",
+        "host#0",
+        "totalAmountClaimed#0",
+        "values%1#0",
+        "values%2#0",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "viewerSession#0",
+        "totalAmountClaimed#0",
+        "aggregate%extract%0#0",
+        "values%1#0",
+        "values%2#0"
+      ]
+    },
+    "359": {
+      "op": "dig 3",
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "viewerSession#0",
+        "totalAmountClaimed#0",
+        "aggregate%extract%0#0",
+        "values%1#0",
+        "values%2#0",
+        "totalAmountClaimed#0 (copy)"
+      ]
+    },
+    "361": {
+      "op": ">=",
+      "defined_out": [
+        "aggregate%extract%0#0",
+        "host#0",
+        "tmp%4#1",
+        "totalAmountClaimed#0",
+        "values%1#0",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "viewerSession#0",
+        "totalAmountClaimed#0",
+        "aggregate%extract%0#0",
+        "values%1#0",
+        "tmp%4#1"
+      ]
+    },
+    "362": {
+      "error": "Claim exceeds deposit",
+      "op": "assert // Claim exceeds deposit",
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "viewerSession#0",
+        "totalAmountClaimed#0",
+        "aggregate%extract%0#0",
+        "values%1#0"
+      ]
+    },
+    "363": {
+      "op": "global CurrentApplicationID",
+      "defined_out": [
+        "aggregate%extract%0#0",
+        "host#0",
+        "tmp%5#1",
+        "totalAmountClaimed#0",
+        "values%1#0",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "viewerSession#0",
+        "totalAmountClaimed#0",
+        "aggregate%extract%0#0",
+        "values%1#0",
+        "tmp%5#1"
+      ]
+    },
+    "365": {
+      "op": "itob",
+      "defined_out": [
+        "aggregate%extract%0#0",
+        "host#0",
+        "tmp%6#0",
+        "totalAmountClaimed#0",
+        "values%1#0",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "viewerSession#0",
+        "totalAmountClaimed#0",
+        "aggregate%extract%0#0",
+        "values%1#0",
+        "tmp%6#0"
+      ]
+    },
+    "366": {
+      "op": "dig 3",
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "viewerSession#0",
+        "totalAmountClaimed#0",
+        "aggregate%extract%0#0",
+        "values%1#0",
+        "tmp%6#0",
+        "totalAmountClaimed#0 (copy)"
+      ]
+    },
+    "368": {
+      "op": "itob",
+      "defined_out": [
+        "aggregate%extract%0#0",
+        "host#0",
+        "tmp%6#0",
+        "tmp%7#1",
+        "totalAmountClaimed#0",
+        "values%1#0",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "viewerSession#0",
+        "totalAmountClaimed#0",
+        "aggregate%extract%0#0",
+        "values%1#0",
+        "tmp%6#0",
+        "tmp%7#1"
+      ]
+    },
+    "369": {
+      "op": "concat",
+      "defined_out": [
+        "aggregate%extract%0#0",
+        "host#0",
+        "tmp%8#0",
+        "totalAmountClaimed#0",
+        "values%1#0",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "viewerSession#0",
+        "totalAmountClaimed#0",
+        "aggregate%extract%0#0",
+        "values%1#0",
+        "tmp%8#0"
+      ]
+    },
+    "370": {
+      "op": "pushbytes \"settle\"",
+      "defined_out": [
+        "\"settle\"",
+        "aggregate%extract%0#0",
+        "host#0",
+        "tmp%8#0",
+        "totalAmountClaimed#0",
+        "values%1#0",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "viewerSession#0",
+        "totalAmountClaimed#0",
+        "aggregate%extract%0#0",
+        "values%1#0",
+        "tmp%8#0",
+        "\"settle\""
+      ]
+    },
+    "378": {
+      "op": "concat",
+      "defined_out": [
+        "aggregate%extract%0#0",
+        "host#0",
+        "msg#0",
+        "totalAmountClaimed#0",
+        "values%1#0",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "viewerSession#0",
+        "totalAmountClaimed#0",
+        "aggregate%extract%0#0",
+        "values%1#0",
+        "msg#0"
+      ]
+    },
+    "379": {
+      "op": "dig 6",
+      "defined_out": [
+        "aggregate%extract%0#0",
+        "host#0",
+        "msg#0",
+        "signature#0",
+        "totalAmountClaimed#0",
+        "values%1#0",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewer#0",
+        "viewerSession#0",
+        "totalAmountClaimed#0",
+        "aggregate%extract%0#0",
+        "values%1#0",
+        "msg#0",
+        "signature#0"
+      ]
+    },
+    "381": {
+      "op": "uncover 6",
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewerSession#0",
+        "totalAmountClaimed#0",
+        "aggregate%extract%0#0",
+        "values%1#0",
+        "msg#0",
+        "signature#0",
+        "viewer#0"
+      ]
+    },
+    "383": {
+      "op": "ed25519verify",
+      "defined_out": [
+        "aggregate%extract%0#0",
+        "host#0",
+        "signature#0",
+        "tmp%10#0",
+        "totalAmountClaimed#0",
+        "values%1#0",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewerSession#0",
+        "totalAmountClaimed#0",
+        "aggregate%extract%0#0",
+        "values%1#0",
+        "tmp%10#0"
+      ]
+    },
+    "384": {
+      "error": "Invalid signature",
+      "op": "assert // Invalid signature",
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewerSession#0",
+        "totalAmountClaimed#0",
+        "aggregate%extract%0#0",
+        "values%1#0"
+      ]
+    },
+    "385": {
+      "op": "uncover 2",
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewerSession#0",
+        "aggregate%extract%0#0",
+        "values%1#0",
+        "totalAmountClaimed#0"
+      ]
+    },
+    "387": {
+      "op": "swap",
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewerSession#0",
+        "aggregate%extract%0#0",
+        "totalAmountClaimed#0",
+        "values%1#0"
+      ]
+    },
+    "388": {
+      "op": "-",
+      "defined_out": [
+        "aggregate%extract%0#0",
+        "host#0",
+        "payout#0",
+        "signature#0",
+        "totalAmountClaimed#0",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewerSession#0",
+        "aggregate%extract%0#0",
+        "payout#0"
+      ]
+    },
+    "389": {
+      "op": "itxn_begin"
+    },
+    "390": {
+      "op": "intc 4 // TMPL_USDC_ASSET_ID",
+      "defined_out": [
+        "aggregate%extract%0#0",
+        "host#0",
+        "inner_txn_params%0%%param_XferAsset_idx_0#0",
+        "payout#0",
+        "signature#0",
+        "totalAmountClaimed#0",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewerSession#0",
+        "aggregate%extract%0#0",
+        "payout#0",
+        "inner_txn_params%0%%param_XferAsset_idx_0#0"
+      ]
+    },
+    "392": {
+      "op": "itxn_field XferAsset"
+    },
+    "394": {
+      "op": "itxn_field AssetAmount",
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewerSession#0",
+        "aggregate%extract%0#0",
+        "inner_txn_params%0%%param_XferAsset_idx_0#0"
+      ]
+    },
+    "396": {
+      "op": "itxn_field AssetReceiver",
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewerSession#0"
+      ]
+    },
+    "398": {
+      "op": "pushint 4 // 4",
+      "defined_out": [
+        "4",
+        "host#0",
+        "signature#0",
+        "totalAmountClaimed#0",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewerSession#0",
+        "4"
+      ]
+    },
+    "400": {
+      "op": "itxn_field TypeEnum",
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewerSession#0"
+      ]
+    },
+    "402": {
+      "op": "intc_2 // 0",
+      "defined_out": [
+        "0",
+        "host#0",
+        "signature#0",
+        "totalAmountClaimed#0",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewerSession#0",
+        "0"
+      ]
+    },
+    "403": {
+      "op": "itxn_field Fee",
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewerSession#0"
+      ]
+    },
+    "405": {
+      "op": "itxn_submit"
+    },
+    "406": {
+      "op": "intc_3 // 40",
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewerSession#0",
+        "40"
+      ]
+    },
+    "407": {
+      "op": "dig 4",
+      "defined_out": [
+        "40",
+        "host#0",
+        "signature#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "viewerSession#0",
+        "40",
+        "tmp%4#0"
+      ]
+    },
+    "409": {
+      "op": "box_replace",
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0"
+      ]
+    },
+    "410": {
+      "op": "intc_1 // 1",
+      "defined_out": [
+        "1",
+        "host#0",
+        "signature#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0",
+        "1"
+      ]
+    },
+    "411": {
+      "op": "return",
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "tmp%4#0",
+        "totalAmountClaimed#0",
+        "signature#0"
+      ]
+    },
+    "412": {
+      "subroutine": "smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts::MppEscrowSessionVaultManager.getRemainingBalance[routing]",
+      "params": {},
+      "block": "getRemainingBalance",
+      "stack_in": [],
+      "op": "txna ApplicationArgs 1",
+      "defined_out": [
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0"
+      ]
+    },
+    "415": {
+      "op": "dup",
+      "defined_out": [
+        "viewer#0",
+        "viewer#0 (copy)"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "viewer#0 (copy)"
+      ]
+    },
+    "416": {
+      "op": "len",
+      "defined_out": [
+        "len%0#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "len%0#0"
+      ]
+    },
+    "417": {
+      "op": "intc_0 // 32",
+      "defined_out": [
+        "32",
+        "len%0#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "len%0#0",
+        "32"
+      ]
+    },
+    "418": {
+      "op": "==",
+      "defined_out": [
+        "eq%0#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "eq%0#0"
+      ]
+    },
+    "419": {
+      "error": "invalid number of bytes for arc4.static_array<arc4.uint8, 32>",
+      "op": "assert // invalid number of bytes for arc4.static_array<arc4.uint8, 32>",
+      "stack_out": [
+        "viewer#0"
+      ]
+    },
+    "420": {
+      "op": "txna ApplicationArgs 2",
+      "defined_out": [
+        "host#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0"
+      ]
+    },
+    "423": {
+      "op": "dup",
+      "defined_out": [
+        "host#0",
+        "host#0 (copy)",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "host#0 (copy)"
+      ]
+    },
+    "424": {
+      "op": "len",
+      "defined_out": [
+        "host#0",
+        "len%1#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "len%1#0"
+      ]
+    },
+    "425": {
+      "op": "intc_0 // 32",
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "len%1#0",
+        "32"
+      ]
+    },
+    "426": {
+      "op": "==",
+      "defined_out": [
+        "eq%1#0",
+        "host#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "host#0",
+        "eq%1#0"
+      ]
+    },
+    "427": {
+      "error": "invalid number of bytes for arc4.static_array<arc4.uint8, 32>",
+      "op": "assert // invalid number of bytes for arc4.static_array<arc4.uint8, 32>",
+      "stack_out": [
+        "viewer#0",
+        "host#0"
+      ]
+    },
+    "428": {
+      "op": "concat",
+      "defined_out": [
+        "materialized_values%0#0"
+      ],
+      "stack_out": [
+        "materialized_values%0#0"
+      ]
+    },
+    "429": {
+      "op": "bytec_0 // \"s\"",
+      "defined_out": [
+        "\"s\"",
+        "materialized_values%0#0"
+      ],
+      "stack_out": [
+        "materialized_values%0#0",
+        "\"s\""
+      ]
+    },
+    "430": {
+      "op": "swap",
+      "stack_out": [
+        "\"s\"",
+        "materialized_values%0#0"
+      ]
+    },
+    "431": {
+      "op": "concat",
+      "defined_out": [
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewerSession#0"
+      ]
+    },
+    "432": {
+      "op": "dup",
+      "defined_out": [
+        "viewerSession#0",
+        "viewerSession#0 (copy)"
+      ],
+      "stack_out": [
+        "viewerSession#0",
+        "viewerSession#0 (copy)"
+      ]
+    },
+    "433": {
+      "op": "box_len",
+      "defined_out": [
+        "_%0#0",
+        "maybe_exists%0#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewerSession#0",
+        "_%0#0",
+        "maybe_exists%0#0"
+      ]
+    },
+    "434": {
+      "op": "bury 1",
+      "stack_out": [
+        "viewerSession#0",
+        "maybe_exists%0#0"
+      ]
+    },
+    "436": {
+      "error": "Session does not exist",
+      "op": "assert // Session does not exist",
+      "stack_out": [
+        "viewerSession#0"
+      ]
+    },
+    "437": {
+      "op": "box_get",
+      "defined_out": [
+        "aggregate%box_get%1#0",
+        "data#0"
+      ],
+      "stack_out": [
+        "data#0",
+        "aggregate%box_get%1#0"
+      ]
+    },
+    "438": {
+      "op": "pop",
+      "stack_out": [
+        "data#0"
+      ]
+    },
+    "439": {
+      "op": "dup",
+      "defined_out": [
+        "data#0",
+        "data#0 (copy)"
+      ],
+      "stack_out": [
+        "data#0",
+        "data#0 (copy)"
+      ]
+    },
+    "440": {
+      "op": "intc_0 // 32",
+      "stack_out": [
+        "data#0",
+        "data#0 (copy)",
+        "32"
+      ]
+    },
+    "441": {
+      "op": "extract_uint64",
+      "defined_out": [
+        "data#0",
+        "values%0#0"
+      ],
+      "stack_out": [
+        "data#0",
+        "values%0#0"
+      ]
+    },
+    "442": {
+      "op": "swap",
+      "stack_out": [
+        "values%0#0",
+        "data#0"
+      ]
+    },
+    "443": {
+      "op": "intc_3 // 40",
+      "defined_out": [
+        "40",
+        "data#0",
+        "values%0#0"
+      ],
+      "stack_out": [
+        "values%0#0",
+        "data#0",
+        "40"
+      ]
+    },
+    "444": {
+      "op": "extract_uint64",
+      "defined_out": [
+        "values%0#0",
+        "values%1#0"
+      ],
+      "stack_out": [
+        "values%0#0",
+        "values%1#0"
+      ]
+    },
+    "445": {
+      "op": "-",
+      "defined_out": [
+        "tmp%1#1"
+      ],
+      "stack_out": [
+        "tmp%1#1"
+      ]
+    },
+    "446": {
+      "op": "itob",
+      "defined_out": [
+        "aggregate%val_as_bytes%0#0"
+      ],
+      "stack_out": [
+        "aggregate%val_as_bytes%0#0"
+      ]
+    },
+    "447": {
+      "op": "pushbytes 0x151f7c75",
+      "defined_out": [
+        "0x151f7c75",
+        "aggregate%val_as_bytes%0#0"
+      ],
+      "stack_out": [
+        "aggregate%val_as_bytes%0#0",
+        "0x151f7c75"
+      ]
+    },
+    "453": {
+      "op": "swap",
+      "stack_out": [
+        "0x151f7c75",
+        "aggregate%val_as_bytes%0#0"
+      ]
+    },
+    "454": {
+      "op": "concat",
+      "defined_out": [
+        "tmp%6#0"
+      ],
+      "stack_out": [
+        "tmp%6#0"
+      ]
+    },
+    "455": {
+      "op": "log",
+      "stack_out": []
+    },
+    "456": {
+      "op": "intc_1 // 1",
+      "defined_out": [
+        "1"
+      ],
+      "stack_out": [
+        "1"
+      ]
+    },
+    "457": {
+      "op": "return",
+      "stack_out": []
+    },
+    "458": {
+      "subroutine": "smart_contracts/mpp_escrow_session_vault_manager/contract.algo.ts::MppEscrowSessionVaultManager.refundAndCloseSession[routing]",
+      "params": {},
+      "block": "refundAndCloseSession",
+      "stack_in": [],
+      "op": "txna ApplicationArgs 1"
+    },
+    "461": {
+      "op": "dupn 2",
+      "defined_out": [
+        "viewer#0",
+        "viewer#0 (copy)"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "viewer#0",
+        "viewer#0 (copy)"
+      ]
+    },
+    "463": {
+      "op": "len",
+      "defined_out": [
+        "len%0#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "viewer#0",
+        "len%0#0"
+      ]
+    },
+    "464": {
+      "op": "intc_0 // 32",
+      "defined_out": [
+        "32",
+        "len%0#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "viewer#0",
+        "len%0#0",
+        "32"
+      ]
+    },
+    "465": {
+      "op": "==",
+      "defined_out": [
+        "eq%0#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "viewer#0",
+        "eq%0#0"
+      ]
+    },
+    "466": {
+      "error": "invalid number of bytes for arc4.static_array<arc4.uint8, 32>",
+      "op": "assert // invalid number of bytes for arc4.static_array<arc4.uint8, 32>",
+      "stack_out": [
+        "viewer#0",
+        "viewer#0"
+      ]
+    },
+    "467": {
+      "op": "txna ApplicationArgs 2",
+      "defined_out": [
+        "host#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "viewer#0",
+        "host#0"
+      ]
+    },
+    "470": {
+      "op": "dup",
+      "defined_out": [
+        "host#0",
+        "host#0 (copy)",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "viewer#0",
+        "host#0",
+        "host#0 (copy)"
+      ]
+    },
+    "471": {
+      "op": "len",
+      "defined_out": [
+        "host#0",
+        "len%1#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "viewer#0",
+        "host#0",
+        "len%1#0"
+      ]
+    },
+    "472": {
+      "op": "intc_0 // 32",
+      "stack_out": [
+        "viewer#0",
+        "viewer#0",
+        "host#0",
+        "len%1#0",
+        "32"
+      ]
+    },
+    "473": {
+      "op": "==",
+      "defined_out": [
+        "eq%1#0",
+        "host#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "viewer#0",
+        "host#0",
+        "eq%1#0"
+      ]
+    },
+    "474": {
+      "error": "invalid number of bytes for arc4.static_array<arc4.uint8, 32>",
+      "op": "assert // invalid number of bytes for arc4.static_array<arc4.uint8, 32>",
+      "stack_out": [
+        "viewer#0",
+        "viewer#0",
+        "host#0"
+      ]
+    },
+    "475": {
+      "op": "concat",
+      "defined_out": [
+        "materialized_values%0#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "materialized_values%0#0"
+      ]
+    },
+    "476": {
+      "op": "bytec_0 // \"s\"",
+      "defined_out": [
+        "\"s\"",
+        "materialized_values%0#0",
+        "viewer#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "materialized_values%0#0",
+        "\"s\""
+      ]
+    },
+    "477": {
+      "op": "swap",
+      "stack_out": [
+        "viewer#0",
+        "\"s\"",
+        "materialized_values%0#0"
+      ]
+    },
+    "478": {
+      "op": "concat",
+      "defined_out": [
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "viewerSession#0"
+      ]
+    },
+    "479": {
+      "op": "dupn 2",
+      "defined_out": [
+        "viewer#0",
+        "viewerSession#0",
+        "viewerSession#0 (copy)"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "viewerSession#0",
+        "viewerSession#0",
+        "viewerSession#0 (copy)"
+      ]
+    },
+    "481": {
+      "op": "box_len",
+      "defined_out": [
+        "_%0#0",
+        "maybe_exists%0#0",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "viewerSession#0",
+        "viewerSession#0",
+        "_%0#0",
+        "maybe_exists%0#0"
+      ]
+    },
+    "482": {
+      "op": "bury 1",
+      "stack_out": [
+        "viewer#0",
+        "viewerSession#0",
+        "viewerSession#0",
+        "maybe_exists%0#0"
+      ]
+    },
+    "484": {
+      "error": "Session does not exist",
+      "op": "assert // Session does not exist",
+      "stack_out": [
+        "viewer#0",
+        "viewerSession#0",
+        "viewerSession#0"
+      ]
+    },
+    "485": {
+      "op": "box_get",
+      "defined_out": [
+        "aggregate%box_get%1#0",
+        "data#0",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "viewerSession#0",
+        "data#0",
+        "aggregate%box_get%1#0"
+      ]
+    },
+    "486": {
+      "op": "pop",
+      "stack_out": [
+        "viewer#0",
+        "viewerSession#0",
+        "data#0"
+      ]
+    },
+    "487": {
+      "op": "txn Sender",
+      "defined_out": [
+        "data#0",
+        "tmp%1#1",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "viewerSession#0",
+        "data#0",
+        "tmp%1#1"
+      ]
+    },
+    "489": {
+      "op": "dig 1",
+      "defined_out": [
+        "data#0",
+        "data#0 (copy)",
+        "tmp%1#1",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "viewerSession#0",
+        "data#0",
+        "tmp%1#1",
+        "data#0 (copy)"
+      ]
+    },
+    "491": {
+      "op": "extract 0 32",
+      "defined_out": [
+        "aggregate%extract%0#0",
+        "data#0",
+        "tmp%1#1",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "viewerSession#0",
+        "data#0",
+        "tmp%1#1",
+        "aggregate%extract%0#0"
+      ]
+    },
+    "494": {
+      "op": "==",
+      "defined_out": [
+        "data#0",
+        "tmp%2#1",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "viewerSession#0",
+        "data#0",
+        "tmp%2#1"
+      ]
+    },
+    "495": {
+      "error": "Only host can close",
+      "op": "assert // Only host can close",
+      "stack_out": [
+        "viewer#0",
+        "viewerSession#0",
+        "data#0"
+      ]
+    },
+    "496": {
+      "op": "dup",
+      "stack_out": [
+        "viewer#0",
+        "viewerSession#0",
+        "data#0",
+        "data#0 (copy)"
+      ]
+    },
+    "497": {
+      "op": "intc_0 // 32",
+      "stack_out": [
+        "viewer#0",
+        "viewerSession#0",
+        "data#0",
+        "data#0 (copy)",
+        "32"
+      ]
+    },
+    "498": {
+      "op": "extract_uint64",
+      "defined_out": [
+        "data#0",
+        "values%1#0",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "viewerSession#0",
+        "data#0",
+        "values%1#0"
+      ]
+    },
+    "499": {
+      "op": "swap",
+      "stack_out": [
+        "viewer#0",
+        "viewerSession#0",
+        "values%1#0",
+        "data#0"
+      ]
+    },
+    "500": {
+      "op": "intc_3 // 40",
+      "defined_out": [
+        "40",
+        "data#0",
+        "values%1#0",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "viewerSession#0",
+        "values%1#0",
+        "data#0",
+        "40"
+      ]
+    },
+    "501": {
+      "op": "extract_uint64",
+      "defined_out": [
+        "values%1#0",
+        "values%2#0",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "viewerSession#0",
+        "values%1#0",
+        "values%2#0"
+      ]
+    },
+    "502": {
+      "op": "-",
+      "defined_out": [
+        "remainingBalance#0",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "viewerSession#0",
+        "remainingBalance#0"
+      ]
+    },
+    "503": {
+      "op": "dup",
+      "defined_out": [
+        "remainingBalance#0",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "viewerSession#0",
+        "remainingBalance#0",
+        "remainingBalance#0"
+      ]
+    },
+    "504": {
+      "op": "bz refundAndCloseSession_after_if_else@4",
+      "stack_out": [
+        "viewer#0",
+        "viewerSession#0",
+        "remainingBalance#0"
+      ]
+    },
+    "507": {
+      "op": "itxn_begin"
+    },
+    "508": {
+      "op": "intc 4 // TMPL_USDC_ASSET_ID",
+      "defined_out": [
+        "inner_txn_params%0%%param_XferAsset_idx_0#0",
+        "remainingBalance#0",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "viewerSession#0",
+        "remainingBalance#0",
+        "inner_txn_params%0%%param_XferAsset_idx_0#0"
+      ]
+    },
+    "510": {
+      "op": "dig 1",
+      "stack_out": [
+        "viewer#0",
+        "viewerSession#0",
+        "remainingBalance#0",
+        "inner_txn_params%0%%param_XferAsset_idx_0#0",
+        "remainingBalance#0"
+      ]
+    },
+    "512": {
+      "op": "itxn_field AssetAmount",
+      "stack_out": [
+        "viewer#0",
+        "viewerSession#0",
+        "remainingBalance#0",
+        "inner_txn_params%0%%param_XferAsset_idx_0#0"
+      ]
+    },
+    "514": {
+      "op": "dig 3",
+      "stack_out": [
+        "viewer#0",
+        "viewerSession#0",
+        "remainingBalance#0",
+        "inner_txn_params%0%%param_XferAsset_idx_0#0",
+        "viewer#0"
+      ]
+    },
+    "516": {
+      "op": "itxn_field AssetReceiver",
+      "stack_out": [
+        "viewer#0",
+        "viewerSession#0",
+        "remainingBalance#0",
+        "inner_txn_params%0%%param_XferAsset_idx_0#0"
+      ]
+    },
+    "518": {
+      "op": "itxn_field XferAsset",
+      "stack_out": [
+        "viewer#0",
+        "viewerSession#0",
+        "remainingBalance#0"
+      ]
+    },
+    "520": {
+      "op": "pushint 4 // 4",
+      "defined_out": [
+        "4",
+        "remainingBalance#0",
+        "viewer#0",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "viewerSession#0",
+        "remainingBalance#0",
+        "4"
+      ]
+    },
+    "522": {
+      "op": "itxn_field TypeEnum",
+      "stack_out": [
+        "viewer#0",
+        "viewerSession#0",
+        "remainingBalance#0"
+      ]
+    },
+    "524": {
+      "op": "intc_2 // 0",
+      "stack_out": [
+        "viewer#0",
+        "viewerSession#0",
+        "remainingBalance#0",
+        "0"
+      ]
+    },
+    "525": {
+      "op": "itxn_field Fee",
+      "stack_out": [
+        "viewer#0",
+        "viewerSession#0",
+        "remainingBalance#0"
+      ]
+    },
+    "527": {
+      "op": "itxn_submit"
+    },
+    "528": {
+      "block": "refundAndCloseSession_after_if_else@4",
+      "stack_in": [
+        "viewer#0",
+        "viewerSession#0",
+        "remainingBalance#0"
+      ],
+      "op": "dig 1",
+      "defined_out": [
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "viewerSession#0",
+        "remainingBalance#0",
+        "viewerSession#0"
+      ]
+    },
+    "530": {
+      "op": "box_del",
+      "defined_out": [
+        "viewerSession#0",
+        "{box_del}"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "viewerSession#0",
+        "remainingBalance#0",
+        "{box_del}"
+      ]
+    },
+    "531": {
+      "op": "pop",
+      "stack_out": [
+        "viewer#0",
+        "viewerSession#0",
+        "remainingBalance#0"
+      ]
+    },
+    "532": {
+      "op": "intc_1 // 1",
+      "defined_out": [
+        "1",
+        "viewerSession#0"
+      ],
+      "stack_out": [
+        "viewer#0",
+        "viewerSession#0",
+        "remainingBalance#0",
+        "1"
+      ]
+    },
+    "533": {
+      "op": "return",
+      "stack_out": [
+        "viewer#0",
+        "viewerSession#0",
+        "remainingBalance#0"
+      ]
+    }
+  }
+}
