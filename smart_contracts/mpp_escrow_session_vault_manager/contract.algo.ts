@@ -92,6 +92,26 @@ export class MppEscrowSessionVaultManager extends Contract {
     viewerSession.value = clone(currentData)
   }
 
+  private getClaimVoucherMessage(totalAmountClaimed: uint64): bytes {
+    return op.itob(op.Global.currentApplicationId.id).concat(op.itob(totalAmountClaimed)).concat(Bytes('settle'))
+  }
+
+  /**
+   * Read-only helper for clients: exact bytes signed for claimVoucher.
+   */
+  claimVoucherMessage(totalAmountClaimed: uint64): bytes {
+    return this.getClaimVoucherMessage(totalAmountClaimed)
+  }
+
+  /**
+   * Read-only helper for clients: verifies claim signature exactly as claimVoucher does.
+   */
+  verifyClaimVoucherSignature(viewer: Account, totalAmountClaimed: uint64, signature: bytes): boolean {
+    const message = this.getClaimVoucherMessage(totalAmountClaimed)
+    const viewerPublicKey = viewer.bytes
+    return op.ed25519verify(message, signature, viewerPublicKey)
+  }
+
   /**
    * Host claims settled USDC amount.  Non-Falcon accounts right now.
    */
@@ -109,9 +129,10 @@ export class MppEscrowSessionVaultManager extends Contract {
     assert(totalAmountClaimed > data.lastSettled, 'Nothing new to claim')
     assert(totalAmountClaimed <= data.totalDeposit, 'Claim exceeds deposit')
 
-    // Message verification
-    const msg = op.itob(op.Global.currentApplicationId.id).concat(op.itob(totalAmountClaimed)).concat(Bytes('settle'))
-    assert(op.ed25519verify(msg, signature, viewer.bytes), 'Invalid signature')
+    const message = this.getClaimVoucherMessage(totalAmountClaimed)
+    const viewerPublicKey = viewer.bytes
+    const signatureIsValid = op.ed25519verify(message, signature, viewerPublicKey)
+    assert(signatureIsValid, 'Invalid signature')
 
     const payout: uint64 = totalAmountClaimed - data.lastSettled
 
