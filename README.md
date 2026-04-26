@@ -1,10 +1,10 @@
-# mpp-escrow-session-vault
+# escrow-session-vault
 
-This project is a placeholder session vault for machine payment protocol (MPP) escrow session until GoPlausible version is ready
+This project is a placeholder MPP escrow session vault until the GoPlausible version is ready.
 
-testnet app id: 759327223L 
+testnet app id: 759469785L 
 
-testnet app address: LERAUXLWSXRWTOCDSUWPWG2ELL73X6D6AJGZEVXVNEHQRUF3YTFE54XX3Q
+testnet app address: YP3BBJ3UXP6AI5BDII2JUIDD576ITN46BQPZXWDT32OHXLV2PILPHTKS34
 
 # Setup
 
@@ -20,12 +20,18 @@ By default the template instance does not contain any env files to deploy to dif
 
 To generate a new `.env` or `.env.{target_network}` file, run `algokit generate env-file`
 
+### Deploying Smart Contracts
+
+```javascript
+algokit compile ts ./smart_contracts/escrow_session_vault_manager/contract.algo.ts
+npm run deploy:ci -- escrow_session_vault_manager
+```
+
 ### Debugging Smart Contracts
 
 This project is optimized to work with AlgoKit AVM Debugger extension. To activate it:
 
 Refer to the commented header in the `index.ts` file in the `smart_contracts` folder.Since you have opted in to include VSCode launch configurations in your project, you can also use the `Debug TEAL via AlgoKit AVM Debugger` launch configuration to interactively select an available trace file and launch the debug session for your smart contract.
-
 
 For information on using and setting up the `AlgoKit AVM Debugger` VSCode extension refer [here](https://github.com/algorandfoundation/algokit-avm-vscode-debugger). To install the extension from the VSCode Marketplace, use the following link: [AlgoKit AVM Debugger extension](https://marketplace.visualstudio.com/items?itemName=algorandfoundation.algokit-avm-vscode-debugger).
 

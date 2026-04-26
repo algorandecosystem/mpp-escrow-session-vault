@@ -1,8 +1,8 @@
 import { AlgorandClient, microAlgo } from '@algorandfoundation/algokit-utils'
-import { MppEscrowSessionVaultManagerFactory } from '../artifacts/mpp_escrow_session_vault_manager/MppEscrowSessionVaultManagerClient.ts'
+import { EscrowSessionVaultManagerFactory } from '../artifacts/escrow_session_vault_manager/EscrowSessionVaultManagerClient.ts'
 
 export async function deploy() {
-  console.log('=== Deploying MppEscrowSessionVaultManager ===')
+  console.log('=== Deploying EscrowSessionVaultManager ===')
 
   const algorand = AlgorandClient.fromEnvironment()
 
@@ -17,7 +17,7 @@ export async function deploy() {
   // This account becomes Global.creatorAddress (your admin in the current contract logic)
   const admin = await algorand.account.fromEnvironment('DEPLOYER')
 
-  const factory = algorand.client.getTypedAppFactory(MppEscrowSessionVaultManagerFactory, {
+  const factory = algorand.client.getTypedAppFactory(EscrowSessionVaultManagerFactory, {
     defaultSender: admin.addr,
   })
 
