@@ -47,22 +47,27 @@ export class EscrowSessionVaultManager extends Contract {
   channels = BoxMap<bytes, ChannelInfo>({ keyPrefix: '' })
 
   /**
+   * Full authorized signer public key storage, keyed by channelId.
+   */
+  authorizedSignerPublicKey = BoxMap<bytes, bytes>({ keyPrefix: 'p' })
+
+  /**
    * Opens a channel with initial deposit and returns derived channelId.
    * Caller becomes payer.
-   * authorizedSigner is full signer pubkey; contract stores its hash.
+   * authorizedSigner is signer pubkey hash (32 bytes) computed client-side.
    */
   open(payee: Account, deposit: uint64, salt: bytes, authorizedSigner: bytes): bytes {
     assert(deposit > 0, 'Deposit must be > 0')
+    assert(authorizedSigner.length === 32, 'Signer hash must be 32 bytes')
 
-    const signerHash = this.computeSignerPubkeyHash(authorizedSigner)
-    const channelId = this.deriveChannelId(Txn.sender, payee, signerHash, salt)
+    const channelId = this.deriveChannelId(Txn.sender, payee, authorizedSigner, salt)
     const channel = this.getChannel(channelId)
 
     if (!channel.exists) {
       channel.value = {
         payer: Txn.sender,
         payee,
-        authorizedSigner: signerHash,
+        authorizedSigner,
         totalDeposit: deposit,
         lastSettled: 0,
         latestVoucherAmount: 0,
@@ -76,7 +81,6 @@ export class EscrowSessionVaultManager extends Contract {
     const data = clone(channel.value)
     assert(Txn.sender === data.payer, 'Only payer can reopen channel')
     assert(payee === data.payee, 'Payee mismatch')
-    assert(signerHash === data.authorizedSigner, 'Authorized signer mismatch')
 
     data.totalDeposit += deposit
     data.closeRequestedAt = 0
@@ -104,9 +108,27 @@ export class EscrowSessionVaultManager extends Contract {
   }
 
   /**
+   * Set full authorized signer public key and update channel.authorizedSigner hash.
+   */
+  setAuthorizedSignerPublicKey(channelId: bytes, authorizedSignerPublicKey: bytes): void {
+    const channel = this.getChannel(channelId)
+    assert(channel.exists, 'Channel does not exist')
+
+    const data = clone(channel.value)
+    assert(Txn.sender === data.payer, 'Only payer can set authorized signer')
+    assert(authorizedSignerPublicKey.length > 0, 'Authorized signer pubkey required')
+
+    const authorizedSignerKey = this.authorizedSignerPublicKey(channelId)
+    authorizedSignerKey.value = authorizedSignerPublicKey
+
+    data.authorizedSigner = sha512_256(authorizedSignerPublicKey)
+    channel.value = clone(data)
+  }
+
+  /**
    * Stores latest cumulative voucher amount on-chain.
    */
-  updateVoucher(channelId: bytes, cumulativeAmount: uint64, signature: bytes, authorizedSigner: bytes): void {
+  updateVoucher(channelId: bytes, cumulativeAmount: uint64, signature: bytes): void {
     const channel = this.getChannel(channelId)
     assert(channel.exists, 'Channel does not exist')
 
@@ -117,7 +139,7 @@ export class EscrowSessionVaultManager extends Contract {
     assert(cumulativeAmount > data.latestVoucherAmount, 'Voucher not increasing')
     assert(cumulativeAmount <= data.totalDeposit, 'Voucher exceeds deposit')
 
-    this.verifySettleSignature(channelId, cumulativeAmount, signature, authorizedSigner)
+    this.verifySettleSignature(channelId, cumulativeAmount, signature)
 
     data.latestVoucherAmount = cumulativeAmount
     channel.value = clone(data)
@@ -126,7 +148,7 @@ export class EscrowSessionVaultManager extends Contract {
   /**
    * Payee settles voucher funds, with support for partial settlement.
    */
-  settle(channelId: bytes, cumulativeAmount: uint64, signature: bytes, authorizedSigner: bytes): void {
+  settle(channelId: bytes, cumulativeAmount: uint64, signature: bytes): void {
     const channel = this.getChannel(channelId)
     assert(channel.exists, 'Channel does not exist')
 
@@ -136,7 +158,7 @@ export class EscrowSessionVaultManager extends Contract {
     assert(cumulativeAmount > data.lastSettled, 'Nothing new to settle')
     assert(cumulativeAmount <= data.latestVoucherAmount, 'Settle exceeds latest voucher')
 
-    this.verifySettleSignature(channelId, cumulativeAmount, signature, authorizedSigner)
+    this.verifySettleSignature(channelId, cumulativeAmount, signature)
 
     const payout: uint64 = cumulativeAmount - data.lastSettled
 
@@ -288,17 +310,10 @@ export class EscrowSessionVaultManager extends Contract {
 
   /**
    * Read-only helper for clients: deterministic channelId derivation.
-   * authorizedSigner is full signer pubkey; helper hashes it internally.
+   * authorizedSigner must be signer pubkey hash (32 bytes).
    */
   computeChannelId(payer: Account, payee: Account, authorizedSigner: bytes, salt: bytes): bytes {
-    return this.deriveChannelId(payer, payee, this.computeSignerPubkeyHash(authorizedSigner), salt)
-  }
-
-  /**
-   * Read-only helper for clients: computes signer pubkey hash.
-   */
-  computeSignerPubkeyHash(authorizedSigner: bytes): bytes {
-    return sha512_256(authorizedSigner)
+    return this.deriveChannelId(payer, payee, authorizedSigner, salt)
   }
 
   /**
@@ -310,18 +325,22 @@ export class EscrowSessionVaultManager extends Contract {
 
   /**
    * Read-only helper for clients: verifies settle authorization exactly as settle/updateVoucher do.
-   * - Ed25519 route when signature is 64 bytes.
-   * - Falcon route when signature length is > 64 bytes.
+   * Uses full authorized signer public key stored in a box for the channel.
    */
-  verifySettleSignature(channelId: bytes, cumulativeAmount: uint64, signature: bytes, authorizedSigner: bytes): void {
+  verifySettleSignature(channelId: bytes, cumulativeAmount: uint64, signature: bytes): void {
     const channel = this.getChannel(channelId)
     assert(channel.exists, 'Channel does not exist')
 
     const data = clone(channel.value)
     const message = this.getSettleMessage(channelId, cumulativeAmount)
 
+    const authorizedSignerPublicKey = this.authorizedSignerPublicKey(channelId)
+    assert(authorizedSignerPublicKey.exists, 'Authorized signer public key not set yet')
+
+    const authorizedSigner = authorizedSignerPublicKey.value
+
     ensureBudget(5000, OpUpFeeSource.AppAccount)
-    assert(this.computeSignerPubkeyHash(authorizedSigner) === data.authorizedSigner, 'Invalid signer pubkey')
+    assert(sha512_256(authorizedSigner) === data.authorizedSigner, 'Invalid signer pubkey')
 
     if (signature.length > 64) {
       falconVerify(message, signature, authorizedSigner)
