@@ -14,6 +14,7 @@ import {
   TemplateVar,
   ensureBudget,
   OpUpFeeSource,
+  gtxn,
 } from '@algorandfoundation/algorand-typescript'
 import { falconVerify, sha512_256 } from '@algorandfoundation/algorand-typescript/op'
 
@@ -52,58 +53,65 @@ export class EscrowSessionVaultManager extends Contract {
   authorizedSignerPublicKey = BoxMap<bytes, bytes>({ keyPrefix: 'p' })
 
   /**
-   * Opens a channel with initial deposit and returns derived channelId.
+   * Opens a channel with initial USDC deposit and returns derived channelId.
    * Caller becomes payer.
    * authorizedSigner is signer pubkey hash (32 bytes) computed client-side.
+   * authorizedSignerPublicKey is optional: if provided, stores full signer pubkey in box.
    */
-  open(payee: Account, deposit: uint64, salt: bytes, authorizedSigner: bytes): bytes {
-    assert(deposit > 0, 'Deposit must be > 0')
+  open(
+    payee: Account,
+    deposit: gtxn.AssetTransferTxn,
+    salt: bytes,
+    authorizedSigner: bytes,
+    authorizedSignerPublicKey: bytes,
+
+  ): bytes {
     assert(authorizedSigner.length === 32, 'Signer hash must be 32 bytes')
 
     const channelId = this.deriveChannelId(Txn.sender, payee, authorizedSigner, salt)
     const channel = this.getChannel(channelId)
 
     if (!channel.exists) {
-      channel.value = {
+      const data: ChannelInfo = {
         payer: Txn.sender,
         payee,
         authorizedSigner,
-        totalDeposit: deposit,
+        totalDeposit: 0,
         lastSettled: 0,
         latestVoucherAmount: 0,
         startRound: op.Global.round,
         startTimestamp: op.Global.latestTimestamp,
         closeRequestedAt: 0,
       }
+      this.setAuthorizedSignerPublicKeyIfProvided(channelId, authorizedSignerPublicKey, authorizedSigner)
+      this.applyTopUp(data, deposit)
+      channel.value = clone(data)
       return channelId
     }
 
     const data = clone(channel.value)
     assert(Txn.sender === data.payer, 'Only payer can reopen channel')
     assert(payee === data.payee, 'Payee mismatch')
+    assert(authorizedSigner === data.authorizedSigner, 'Authorized signer hash mismatch')
 
-    data.totalDeposit += deposit
-    data.closeRequestedAt = 0
+    this.setAuthorizedSignerPublicKeyIfProvided(channelId, authorizedSignerPublicKey, data.authorizedSigner)
+    this.applyTopUp(data, deposit)
     channel.value = clone(data)
 
     return channelId
   }
 
   /**
-   * Adds funds to an existing channel.
+   * Adds funds to an existing channel using a grouped USDC asset transfer.
    */
-  topUp(channelId: bytes, additionalDeposit: uint64): void {
-    assert(additionalDeposit > 0, 'Deposit must be > 0')
-
+  topUp(channelId: bytes, cumulativeAmount: gtxn.AssetTransferTxn): void {
     const channel = this.getChannel(channelId)
     assert(channel.exists, 'Channel does not exist')
 
     const data = clone(channel.value)
     assert(Txn.sender === data.payer, 'Only payer can top up')
 
-    data.totalDeposit += additionalDeposit
-    // Per spec: top-up cancels pending close request.
-    data.closeRequestedAt = 0
+    this.applyTopUp(data, cumulativeAmount)
     channel.value = clone(data)
   }
 
@@ -118,10 +126,10 @@ export class EscrowSessionVaultManager extends Contract {
     assert(Txn.sender === data.payer, 'Only payer can set authorized signer')
     assert(authorizedSignerPublicKey.length > 0, 'Authorized signer pubkey required')
 
-    const authorizedSignerKey = this.authorizedSignerPublicKey(channelId)
-    authorizedSignerKey.value = authorizedSignerPublicKey
+    const authorizedSignerHash = sha512_256(authorizedSignerPublicKey)
+    this.setAuthorizedSignerPublicKeyIfProvided(channelId, authorizedSignerPublicKey, authorizedSignerHash)
 
-    data.authorizedSigner = sha512_256(authorizedSignerPublicKey)
+    data.authorizedSigner = authorizedSignerHash
     channel.value = clone(data)
   }
 
@@ -356,6 +364,31 @@ export class EscrowSessionVaultManager extends Contract {
 
   private getChannel(channelId: bytes) {
     return this.channels(channelId)
+  }
+
+  private applyTopUp(data: ChannelInfo, cumulativeAmount: gtxn.AssetTransferTxn): void {
+    assert(cumulativeAmount.sender === Txn.sender, 'Payment sender mismatch')
+    assert(cumulativeAmount.assetReceiver === op.Global.currentApplicationAddress, 'Payment must be to contract')
+    assert(cumulativeAmount.xferAsset.id === USDC_ASSET_ID, 'Payment asset must be USDC')
+    assert(cumulativeAmount.assetAmount > 0, 'Deposit must be > 0')
+    assert(cumulativeAmount.assetSender === Account(), 'Clawback transfer not allowed')
+    assert(cumulativeAmount.assetCloseTo === Account(), 'Asset close not allowed')
+
+    data.totalDeposit += cumulativeAmount.assetAmount
+    // Per spec: top-up cancels pending close request.
+    data.closeRequestedAt = 0
+  }
+
+  private setAuthorizedSignerPublicKeyIfProvided(
+    channelId: bytes,
+    authorizedSignerPublicKey: bytes,
+    expectedAuthorizedSignerHash: bytes,
+  ): void {
+    if (authorizedSignerPublicKey.length > 0) {
+      assert(sha512_256(authorizedSignerPublicKey) === expectedAuthorizedSignerHash, 'Authorized signer hash mismatch')
+      const authorizedSignerKey = this.authorizedSignerPublicKey(channelId)
+      authorizedSignerKey.value = authorizedSignerPublicKey
+    }
   }
 
   private deriveChannelId(payer: Account, payee: Account, authorizedSigner: bytes, salt: bytes): bytes {
