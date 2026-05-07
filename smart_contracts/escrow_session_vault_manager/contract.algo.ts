@@ -15,6 +15,7 @@ import {
   ensureBudget,
   OpUpFeeSource,
 } from '@algorandfoundation/algorand-typescript'
+import { falconVerify, sha512_256 } from '@algorandfoundation/algorand-typescript/op'
 
 /**
  * Compile-time network-specific USDC ASA id.
@@ -22,17 +23,15 @@ import {
  */
 const USDC_ASSET_ID = TemplateVar<uint64>('USDC_ASSET_ID')
 const CLOSE_GRACE_PERIOD_SECONDS: uint64 = 900
-const SIGNER_TYPE_ED25519: uint64 = 0
-const SIGNER_TYPE_FALCON_TXN_AUTH: uint64 = 1
 
 /**
  * ChannelInfo: source of truth for a single payment channel.
+ * authorizedSigner stores signer pubkey hash (sha512_256(pubkey)).
  */
 export interface ChannelInfo {
   payer: Account
   payee: Account
-  authorizedSigner: Account
-  signerType: uint64
+  authorizedSigner: bytes
   totalDeposit: uint64
   lastSettled: uint64
   latestVoucherAmount: uint64
@@ -50,21 +49,20 @@ export class EscrowSessionVaultManager extends Contract {
   /**
    * Opens a channel with initial deposit and returns derived channelId.
    * Caller becomes payer.
-   * signerType: 0=Ed25519 voucher signer, 1=Falcon txn-auth mode (no voucher signature verification)
+   * authorizedSigner is full signer pubkey; contract stores its hash.
    */
-  open(payee: Account, deposit: uint64, salt: bytes, authorizedSigner: Account, signerType: uint64): bytes {
+  open(payee: Account, deposit: uint64, salt: bytes, authorizedSigner: bytes): bytes {
     assert(deposit > 0, 'Deposit must be > 0')
-    assert(signerType <= SIGNER_TYPE_FALCON_TXN_AUTH, 'Unsupported signer type')
 
-    const channelId = this.deriveChannelId(Txn.sender, payee, authorizedSigner, salt)
+    const signerHash = this.computeSignerPubkeyHash(authorizedSigner)
+    const channelId = this.deriveChannelId(Txn.sender, payee, signerHash, salt)
     const channel = this.getChannel(channelId)
 
     if (!channel.exists) {
       channel.value = {
         payer: Txn.sender,
         payee,
-        authorizedSigner,
-        signerType,
+        authorizedSigner: signerHash,
         totalDeposit: deposit,
         lastSettled: 0,
         latestVoucherAmount: 0,
@@ -78,8 +76,7 @@ export class EscrowSessionVaultManager extends Contract {
     const data = clone(channel.value)
     assert(Txn.sender === data.payer, 'Only payer can reopen channel')
     assert(payee === data.payee, 'Payee mismatch')
-    assert(authorizedSigner === data.authorizedSigner, 'Authorized signer mismatch')
-    assert(signerType === data.signerType, 'Signer type mismatch')
+    assert(signerHash === data.authorizedSigner, 'Authorized signer mismatch')
 
     data.totalDeposit += deposit
     data.closeRequestedAt = 0
@@ -108,10 +105,8 @@ export class EscrowSessionVaultManager extends Contract {
 
   /**
    * Stores latest cumulative voucher amount on-chain.
-   * In Ed25519 mode, requires valid voucher signature.
-   * In Falcon txn-auth mode, requires payer sender auth.
    */
-  updateVoucher(channelId: bytes, cumulativeAmount: uint64, signature: bytes): void {
+  updateVoucher(channelId: bytes, cumulativeAmount: uint64, signature: bytes, authorizedSigner: bytes): void {
     const channel = this.getChannel(channelId)
     assert(channel.exists, 'Channel does not exist')
 
@@ -122,7 +117,7 @@ export class EscrowSessionVaultManager extends Contract {
     assert(cumulativeAmount > data.latestVoucherAmount, 'Voucher not increasing')
     assert(cumulativeAmount <= data.totalDeposit, 'Voucher exceeds deposit')
 
-    this.verifySettleSignature(channelId, cumulativeAmount, signature)
+    this.verifySettleSignature(channelId, cumulativeAmount, signature, authorizedSigner)
 
     data.latestVoucherAmount = cumulativeAmount
     channel.value = clone(data)
@@ -131,7 +126,7 @@ export class EscrowSessionVaultManager extends Contract {
   /**
    * Payee settles voucher funds, with support for partial settlement.
    */
-  settle(channelId: bytes, cumulativeAmount: uint64, signature: bytes): void {
+  settle(channelId: bytes, cumulativeAmount: uint64, signature: bytes, authorizedSigner: bytes): void {
     const channel = this.getChannel(channelId)
     assert(channel.exists, 'Channel does not exist')
 
@@ -141,7 +136,7 @@ export class EscrowSessionVaultManager extends Contract {
     assert(cumulativeAmount > data.lastSettled, 'Nothing new to settle')
     assert(cumulativeAmount <= data.latestVoucherAmount, 'Settle exceeds latest voucher')
 
-    this.verifySettleSignature(channelId, cumulativeAmount, signature)
+    this.verifySettleSignature(channelId, cumulativeAmount, signature, authorizedSigner)
 
     const payout: uint64 = cumulativeAmount - data.lastSettled
 
@@ -178,36 +173,6 @@ export class EscrowSessionVaultManager extends Contract {
     data.lastSettled = data.latestVoucherAmount
     channel.value = clone(data)
   }
-
-  // /**
-  //  * Legacy one-step settle path (deprecated): verify+settle in one call.
-  //  */
-  // settleWithVoucher(channelId: bytes, cumulativeAmount: uint64, signature: bytes): void {
-  //   const channel = this.getChannel(channelId)
-  //   assert(channel.exists, 'Channel does not exist')
-  //
-  //   const data = clone(channel.value)
-  //
-  //   assert(Txn.sender === data.payee, 'Only payee can settle')
-  //   assert(cumulativeAmount > data.lastSettled, 'Nothing new to settle')
-  //   assert(cumulativeAmount <= data.totalDeposit, 'Settle exceeds deposit')
-  //
-  //   this.verifySettleSignature(channelId, cumulativeAmount, signature)
-  //
-  //   const payout: uint64 = cumulativeAmount - data.lastSettled
-  //
-  //   itxn.assetTransfer({
-  //     xferAsset: Asset(USDC_ASSET_ID),
-  //     assetReceiver: data.payee,
-  //     assetAmount: payout,
-  //   }).submit()
-  //
-  //   data.lastSettled = cumulativeAmount
-  //   if (data.latestVoucherAmount < cumulativeAmount) {
-  //     data.latestVoucherAmount = cumulativeAmount
-  //   }
-  //   channel.value = clone(data)
-  // }
 
   /**
    * Payee closes channel after all voucher obligations are settled.
@@ -312,8 +277,6 @@ export class EscrowSessionVaultManager extends Contract {
   /**
    * Returns latest session dynamic data tuple:
    * [totalDeposit, lastSettled, latestVoucherAmount]
-   * availableBalance = totalDeposit - lastSettled
-   * unclaimedVoucherBalance = latestVoucherAmount - lastSettled
    */
   getSessionDynamicData(channelId: bytes): [uint64, uint64, uint64] {
     const channel = this.getChannel(channelId)
@@ -325,9 +288,17 @@ export class EscrowSessionVaultManager extends Contract {
 
   /**
    * Read-only helper for clients: deterministic channelId derivation.
+   * authorizedSigner is full signer pubkey; helper hashes it internally.
    */
-  computeChannelId(payer: Account, payee: Account, authorizedSigner: Account, salt: bytes): bytes {
-    return this.deriveChannelId(payer, payee, authorizedSigner, salt)
+  computeChannelId(payer: Account, payee: Account, authorizedSigner: bytes, salt: bytes): bytes {
+    return this.deriveChannelId(payer, payee, this.computeSignerPubkeyHash(authorizedSigner), salt)
+  }
+
+  /**
+   * Read-only helper for clients: computes signer pubkey hash.
+   */
+  computeSignerPubkeyHash(authorizedSigner: bytes): bytes {
+    return sha512_256(authorizedSigner)
   }
 
   /**
@@ -339,25 +310,27 @@ export class EscrowSessionVaultManager extends Contract {
 
   /**
    * Read-only helper for clients: verifies settle authorization exactly as settle/updateVoucher do.
-   * - Ed25519 mode: validates voucher signature.
-   * - Falcon txn-auth mode: validates caller is channel participant (txn-level auth).
+   * - Ed25519 route when signature is 64 bytes.
+   * - Falcon route when signature length is > 64 bytes.
    */
-  verifySettleSignature(channelId: bytes, cumulativeAmount: uint64, signature: bytes): void {
+  verifySettleSignature(channelId: bytes, cumulativeAmount: uint64, signature: bytes, authorizedSigner: bytes): void {
     const channel = this.getChannel(channelId)
     assert(channel.exists, 'Channel does not exist')
 
     const data = clone(channel.value)
+    const message = this.getSettleMessage(channelId, cumulativeAmount)
 
-    if (data.signerType === SIGNER_TYPE_ED25519) {
-      ensureBudget(5000, OpUpFeeSource.AppAccount)
-      const message = this.getSettleMessage(channelId, cumulativeAmount)
-      const signatureIsValid = op.ed25519verifyBare(message, signature, data.authorizedSigner.bytes)
-      assert(signatureIsValid, 'Invalid signature')
+    ensureBudget(5000, OpUpFeeSource.AppAccount)
+    assert(this.computeSignerPubkeyHash(authorizedSigner) === data.authorizedSigner, 'Invalid signer pubkey')
+
+    if (signature.length > 64) {
+      falconVerify(message, signature, authorizedSigner)
       return
     }
 
-    assert(data.signerType === SIGNER_TYPE_FALCON_TXN_AUTH, 'Unsupported signer type')
-    assert(Txn.sender === data.payer || Txn.sender === data.payee, 'Falcon txn auth required')
+    assert(signature.length === 64, 'Invalid Ed25519 signature length')
+    const signatureIsValid = op.ed25519verifyBare(message, signature, authorizedSigner)
+    assert(signatureIsValid, 'Invalid signature')
   }
 
   // Helper functions
@@ -366,17 +339,10 @@ export class EscrowSessionVaultManager extends Contract {
     return this.channels(channelId)
   }
 
-  private deriveChannelId(payer: Account, payee: Account, authorizedSigner: Account, salt: bytes): bytes {
+  private deriveChannelId(payer: Account, payee: Account, authorizedSigner: bytes, salt: bytes): bytes {
     // Algorand channel-id derivation:
-    // sha256(payer || payee || assetId || salt || authorizedSigner)
-    return op
-      .sha256(
-        payer.bytes
-          .concat(payee.bytes)
-          .concat(op.itob(USDC_ASSET_ID))
-          .concat(salt)
-          .concat(authorizedSigner.bytes)
-      )
+    // sha256(payer || payee || assetId || salt || authorizedSignerHash)
+    return op.sha256(payer.bytes.concat(payee.bytes).concat(op.itob(USDC_ASSET_ID)).concat(salt).concat(authorizedSigner))
   }
 
   private getSettleMessage(channelId: bytes, cumulativeAmount: uint64): bytes {
